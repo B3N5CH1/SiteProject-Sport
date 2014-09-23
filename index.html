@@ -1,0 +1,57 @@
+
+<html>
+	<head> 
+		<link type="text/css" rel="stylesheet" href="style.css" >
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<title>Broadsport - sportveranstaltungen in der Nahe</title>
+	</head>
+	<body>
+		<img src="images/banner.png" border = 2 width = 1367 height = 100></img>
+
+		<h1>Broadsport - sportveranstaltungen in der Nahe</h1>
+		
+		<!-- login field -->
+		<p> Eine veranstaltung melden </p>		
+		<p>  <input type=text name="user.name"></p>
+		<p> password <input type=text name="user.password"></p>
+		<p> <input type=submit name=submit value="login">
+		<p> Haben Sie keine Konto? <a href = "register.html"> Anmelden </a></p>
+		
+		<!-- Proving user's attempt to log in -->
+		<?php
+				require_once('connect.php');  //файл присоединения к базе
+
+				$manager_name = $_POST['manager_name'];
+    
+				if (isset($manager_name)) {
+	  
+					$sql = "SELECT countries.country FROM
+							tours, personal, countries
+							WHERE 
+							tours.mcode = personal.id AND
+							tours.ccode = countries.ccode AND
+							family LIKE '".$manager_name."' 
+						;";
+	  
+		
+					$result = dbDo($sql, "Страны в которые ездил менеджер");
+					if($result) dbList($result);
+				}
+				else{
+				}  
+		?>
+		<img src="scr.png"> <img>
+		<table>
+			<tr>
+				<td>Fussball</td>
+				<td>Boxen</td>
+				<td>E-sports</td>
+				<td>Unihockey</td>
+				<td>Basketball</td>
+				<td><p>Ihre Veranstaltung hinzufuegen</p><a href = "Add_event.html"></a></td>
+			</tr>
+		</table>
+<p>News/Updates</p>
+
+</body>
+</html>

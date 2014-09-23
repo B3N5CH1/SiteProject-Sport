@@ -3,7 +3,7 @@
 $Host = "localhost"; 
 $User = "usr";      
 $Passwd = "12345";    
-$DBName = "man";     
+$DBName = "evts";     
 
 $Connect = mysql_connect($Host, $User, $Passwd);
 

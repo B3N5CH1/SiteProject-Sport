@@ -2,8 +2,7 @@
 	<head> 
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" >
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-		
+		<link rel="stylesheet" href="css/leaflet.css" />
 		<title>Broadsport - sportveranstaltungen in der Nahe</title>
 	</head>
 	<body>
@@ -13,10 +12,23 @@
 		
 		<!-- login field -->
 		<p> Eine veranstaltung melden </p>		
-		<p>  <input type=text name="user.name"></p>
-		<p> password <input type=text name="user.password"></p>
-		<p> <input type=submit name=submit value="login">
-		<p> Haben Sie keine Konto? <a href = "register.html"> Anmelden </a></p>
+		<p> Kategorie </p>
+		<select>
+			<option value="Europa">Basketball</option>
+			<option value="America">Boxen</option>
+			<option value="Asia">Handball</option>
+			<option value="Africa">Volleyball</option>
+			<option value="Football">Football</option>
+			<option value="Basketball">Unihockey</option>
+			<option value="Handball">E-sports</option>
+		</select>
+		</p>
+		<p> Stadt <input type=text name="city"></p>
+		<p> PLZ <input type=text name="zip"></p>
+		<p> Adresse <input type=text name="adress"> </p>
+		<p> Kurze beschreibung <input type=text name="beschreibung"> </p>
+		<p><input type=submit name=submit value="Melden"> </p>
+		<p> Oder druecken sie einfach die Karte an!</p>
 		
 		<!-- Proving user's attempt to log in -->
 		<?php
@@ -35,7 +47,7 @@
 						;";
 	  
 		
-					$result = dbDo($sql, "");
+					$result = dbDo($sql , "");
 					if($result) dbList($result);
 				}
 				else{
@@ -44,17 +56,17 @@
 		<img src="scr.png"> <img>
 		<table>
 			<tr>
-				<td>Fussball</td>
-				<td>Boxen</td>
-				<td>E-sports</td>
-				<td>Unihockey</td>
-				<td>Basketball</td>
+				<td>Fussball </td>
+				<td>Boxen </td>
+				<td>E-sports </td>
+				<td>Unihockey </td>
+				<td>Basketball </td>
 				<td><p>Ihre Veranstaltung hinzufuegen</p><a href = "Add_event.html"></a></td>
 			</tr>
 		</table>
 <p>News/Updates</p>
 <div id="map" height="180"></div>
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="js/leaflet.js"></script>
 <script>
 // create a map in the "map" div, set the view to a given place and zoom
 var map = L.map('map').setView([51.505, -0.09], 13);

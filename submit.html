@@ -6,6 +6,7 @@
     </title>
 </head>
     
+<<<<<<< HEAD
     
 <body>
 	<div class="container">
@@ -18,14 +19,40 @@
 	</table>
 		
 		<p>
+=======
+    <body>
+        <div class="container">
+            <h2>Eigene Veranstaltung eintragen</h2>
+            <p>
+>>>>>>> origin/master
             Hier kannst Du eine neue Veranstaltung eintragen.
-        </p>
+            </p>
+        
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collabse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    <a class="navbar-brand" href="index.html">Home</a>
+                </div>
+                
+            </div>
+        </nav>
+        <a href="index.html">Home</a><br><br>
         
     
         
-        <input type="text" value="Champions League">
+        <p> Titel <input type="text" name="title"></p>
 		</input>
+<<<<<<< HEAD
 		<select>
+=======
+        <select>
+>>>>>>> origin/master
             <option value="Football">Football</option>
             <option value="Basketball">Basketball</option>
             <option value="Handball">Handball</option>
@@ -42,8 +69,11 @@
             <option value="Speed Skating">Speed Skating</option>
             <option value="Baseball">Baseball</option>
             <option value="Cricket">Cricket</option>
-                        
         </select>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/master
         <select>
             <option value="Schweiz">Schweiz</option>
             <option value="Europa">Europa</option>
@@ -58,6 +88,59 @@
             <option value="Olympic">Olympic</option>
 			<option value="Local"> Local</option>
         </select>
+<<<<<<< HEAD
 	</div>
+=======
+
+        <p> Stadt <input type=text name="city"></p>
+		<p> PLZ <input type=text name="zip"></p>
+		<p> Adresse <input type=text name="adress"> </p>
+		<p> Kurze beschreibung <input type=text name="beschreibung"> </p>
+		<p><input type=submit name=submit value="Melden"> </p>
+		<p> Oder druecken sie einfach die Karte an!</p>
+		
+		<!-- Proving user's attempt to log in -->
+		<?php
+				require_once('connect.php');
+
+				$manager_name = $_POST['manager_name'];
+    
+				if (isset($manager_name)) {
+	  
+					$sql = "SELECT countries.country FROM
+							tours, personal, countries
+							WHERE 
+							tours.mcode = personal.id AND
+							tours.ccode = countries.ccode AND
+							family LIKE '".$manager_name."' 
+						;";
+	  
+		
+					$result = dbDo($sql , "");
+					if($result) dbList($result);
+				}
+				else{
+				}  
+		?>
+    
+        <div id="map" height="180"></div>
+        <script src="js/leaflet.js"></script>
+        <script>
+            // create a map in the "map" div, set the view to a given place and zoom
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            // add an OpenStreetMap tile layer
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // add a marker in the given location, attach some popup content to it and open the popup
+            L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
+            .openPopup();
+            console.log(map);
+        </script>
+        </div>
+>>>>>>> origin/master
     </body>
 </html>

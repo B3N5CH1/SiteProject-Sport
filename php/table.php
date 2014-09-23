@@ -14,19 +14,19 @@ $sql="DROP TABLE ".$table;
 dbDo($sql, "Creating table events ".$table);
 $sql="CREATE TABLE ".$table."
 	(id int(10)     not null auto_increment,
-	  TEXT,
-	 pol TEXT,
-	 lang_id int(30) not null,
+	zip int(6) not null,
+	city TEXT,
+	adress TEXT,
+	description TEXT, 
      primary key (id),
-	 foreign key (lang_id) references lang (id) on delete cascade on update cascade
 	) ENGINE=InnoDB;";
-if(dbDo($sql, "inserting into table ".$table)) {
+
+	if(dbDo($sql, "inserting into table ".$table)) {
 	
-	$sql = "INSERT INTO `".$table."` (`id` ,`faml`, `pol` , `lang_id`) 
+	$sql = "INSERT INTO `".$table."` (`id` ,`zip`, `city` , `adress`, `description`) 
 			VALUES 
-			('', 'Иванов', 'мужской', '1'),
-			('', 'Петрова', 'женский', '2'),
-			('', 'Сидорова', 'женский', '3')
+			('', 'Lenzburg', '5600', 'Heideplatz 7', 'oop' ),
+			('', 'Bern', '3006', 'Heideplatz 7', 'ool' ),
 			;";
 	if(dbDo($sql, "внесение данных в таблицу ".$table))
 		dbList($table);

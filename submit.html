@@ -14,15 +14,8 @@
         
     
         
-        <input type="text" value="Champions League">
+        <p> Titel <input type="text" name="title"></p>
 		</input>
-        <select>
-            <option value="Schweiz">Schweiz</option>
-            <option value="Europa">Europa</option>
-            <option value="America">America</option>
-            <option value="Asia">Asia</option>
-            <option value="Africa">Africa</option>
-        </select>
         <select>
             <option value="Football">Football</option>
             <option value="Basketball">Basketball</option>
@@ -40,13 +33,52 @@
             <option value="Speed Skating">Speed Skating</option>
             <option value="Baseball">Baseball</option>
             <option value="Cricket">Cricket</option>
-                        
         </select>
+    
+        <select>
+            <option value="Schweiz">Schweiz</option>
+            <option value="Europa">Europa</option>
+            <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Africa">Africa</option>
+        </select>
+        
 		<select>
 		    <option value="International">International</option>
 			<option value="Continental">Continental</option>
             <option value="Olympic">Olympic</option>
 			<option value="Local"> Local</option>
         </select>
+
+        <p> Stadt <input type=text name="city"></p>
+		<p> PLZ <input type=text name="zip"></p>
+		<p> Adresse <input type=text name="adress"> </p>
+		<p> Kurze beschreibung <input type=text name="beschreibung"> </p>
+		<p><input type=submit name=submit value="Melden"> </p>
+		<p> Oder druecken sie einfach die Karte an!</p>
+		
+		<!-- Proving user's attempt to log in -->
+		<?php
+				require_once('connect.php');
+
+				$manager_name = $_POST['manager_name'];
+    
+				if (isset($manager_name)) {
+	  
+					$sql = "SELECT countries.country FROM
+							tours, personal, countries
+							WHERE 
+							tours.mcode = personal.id AND
+							tours.ccode = countries.ccode AND
+							family LIKE '".$manager_name."' 
+						;";
+	  
+		
+					$result = dbDo($sql , "");
+					if($result) dbList($result);
+				}
+				else{
+				}  
+		?>
     </body>
 </html>

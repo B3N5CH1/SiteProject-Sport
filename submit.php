@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="leaflet/leaflet.css">
         <title>
             Broadsport.ch
         </title>
@@ -31,8 +31,9 @@
             <p>
             Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
+            <form method="POST" action="submit.php">
             <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
-				<form method="POST" action="submit.php">
+				
                 <tr>
                     <td>Titel</td>
                     <td><input type="text" name="Titel" /></td>
@@ -107,11 +108,12 @@
                     <td>Uhrzeit</td>
                     <td><input type="time" name="Uhrzeit"/></td>
                 </tr>
-				<input type=submit name=send value="Send!">
-				</form>
+				
+				
             </table>	
-			
-			
+			<input type=submit name=send value="Send!">
+			<input type="reset" />
+            </form>
 <?php	
 
 require_once('php/connect.php');
@@ -145,29 +147,27 @@ if(isset($sent)){
 			
 			
 			
-				<input type="reset" />
-            
-            <!-- Map -->
-            <div id="map" height="180"></div>
-            <script src="js/leaflet.js"></script>
-            <script>
-                // create a map in the "map" div, set the view to a given place and zoom
-                var map = L.map('map').setView([51.505, -0.09], 13);
-
-                // add an OpenStreetMap tile layer
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
-
-                // add a marker in the given location, attach some popup content to it and open the popup
-                L.marker([51.5, -0.09]).addTo(map)
-                .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
-                .openPopup();
-                console.log(map);
-            </script>
-            
+				         
             
             <!-- Map 2.0 -->
+            <br><br>
+            <div id="map" style="height: 200px;"></div>
+            <script src="leaflet/leaflet.js"></script>
+            <script>
+                var map = L.map('map').setView([46.951083, 7.438639], 16);
+                
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18
+                }).addTo(map);
+                
+                L.marker([46.951083, 7.438639]).addTo(map)
+                .bindPopup('ExWi-Gebäude UniB')
+                .openPopup();
+                console.log(map);
+                
+                
+            </script>
             
             <br><br><br><br>
         </div>

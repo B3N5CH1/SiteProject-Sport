@@ -1,6 +1,11 @@
-     "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
+<style>
+    .right {
+        position: absolute;
+        right: 0px;
+    }
+</style>
 <title>Script-Bereiche definieren</title>
 <script type="text/javascript">
 function Zeit () {
@@ -13,16 +18,19 @@ function Zeit () {
   var Vortag = ((Tag < 10) ? "0" : "");
   var Vormon = ((Monat < 10) ? ".0" : ".");
   var Datum = Vortag + Tag + Vormon + Monat + "." + Jahr;
-  document.write("<h1>" + Datum + "<\/h1>")
+  document.write("<p>" + Datum + "</p>")
 }
 </script>
 </head>
 <body>
 
+<div class="right">
 <script type="text/javascript">
   Zeit();
 </script>
-
+</div>
 <p>Aktuelle Nachrichten ...</p>
 <a href="javascript.html">backbutton</a>
+
+</body>
 </html>

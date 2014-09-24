@@ -2,14 +2,8 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-
-		<link rel="stylesheet" href="css/leaflet.css">
-
-		<title>
-
-        <link rel="stylesheet" href="leaflet/leaflet.css">
+        <link rel="stylesheet" href="css/leaflet.css">
         <title>
-
             Broadsport.ch
         </title>
 		
@@ -38,18 +32,19 @@
             Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
             <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
+				<form method="POST" action="submit.php">
                 <tr>
                     <td>Titel</td>
                     <td><input type="text" name="Titel" /></td>
                 </tr>
                 <tr>
                     <td>Kurze beschreibung</td>
-                    <td><input type="text" name="Kurze beschreibung"/></td>
+                    <td><input type="text" name="Kurze_beschreibung"/></td>
                 </tr>
                 <tr>
                     <td>Sportart</td>
                     <td>
-                        <select>
+                        <select name="sportart">
                             <option value="Football">Football</option>
                             <option value="Basketball">Basketball</option>
                             <option value="Handball">Handball</option>
@@ -72,7 +67,7 @@
                 <tr>
                     <td>Kontinent</td>
                     <td>
-                        <select>
+                        <select name="continent">
                             <option value="Europa">Europa</option>
                             <option value="America">America</option>
                             <option value="Asien">Asien</option>
@@ -83,7 +78,7 @@
                 <tr>
                     <td>Reichweite</td>
                     <td>
-                        <select>
+                        <select name="reichweite">
                             <option value="Lokal">Lokal</option>
                             <option value="National">National</option>
                             <option value="Kontinental">Kontinental</option>
@@ -105,23 +100,54 @@
                     <td><input type="text" name="Stadt" /></td>
                 </tr>
                 <tr>
-                    <td>Datum (Format: Jahr, Monat, Tag)</td>
-                    <td><input type="date"/></td>
+                    <td>Datum</td>
+                    <td><input type="date" name="Datum"/></td>
                 </tr>
                 <tr>
-                    <td>Uhrzeit (Format: Stunden, Minuten, AM/PM)</td>
-                    <td><input type="time"/></td>
+                    <td>Uhrzeit</td>
+                    <td><input type="time" name="Uhrzeit"/></td>
                 </tr>
+				<input type=submit name=send value="Send!">
+				</form>
             </table>	
 			
-		    <input type="submit" />   <input type="reset" />
+			
+<?php	
 
-            <br></br>
-            <!-- Map
+require_once('php/connect.php');
+
+$table = "events";
+$sent = $_POST['send'];
+$title = $_POST['Titel'];
+$descript = $_POST['Kurze_beschreibung'];
+$sportart = $_POST['sportart'];
+$continent = $_POST['continent'];
+$reach = $_POST['reichweite'];
+$adress = $_POST['Adresse'];
+$zip = $_POST['PLZ'];
+$city = $_POST['Stadt'];
+$dte = $_POST['Datum'];
+$time = $_POST['Uhrzeit'];
+
+if(isset($sent)){
+
+		$sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`, `city`) 
+			VALUES 
+			('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."', '".$city."');";
+		dbDo($sql);
+}
+
+?>	
+			
+			
+			
+			
+			
+			
+			
+				<input type="reset" />
             
-
-            <!-- Map 
->>>>>>> origin/master
+            <!-- Map -->
             <div id="map" height="180"></div>
             <script src="js/leaflet.js"></script>
             <script>
@@ -139,30 +165,9 @@
                 .openPopup();
                 console.log(map);
             </script>
-            -->
             
-
-
-            <br><br>
             
             <!-- Map 2.0 -->
-            
-            <div id="map" style="height: 200px;"></div>
-            <script src="leaflet/leaflet.js"></script>
-            <script>
-                var map = L.map('map').setView([46.951083, 7.438639], 16);
-                
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                    maxZoom: 18
-                }).addTo(map);
-                
-                L.marker([46.951083, 7.438639]).addTo(map)
-                .bindPopup('ExWi-Gebäude UniB')
-                .openPopup();
-                console.log(map);
-                
-            </script>
             
             <br><br><br><br>
         </div>

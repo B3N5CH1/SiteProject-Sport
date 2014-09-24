@@ -5,7 +5,7 @@ $User = "usr";
 $Passwd = "12345";    
 $DBName = "evts";     
 
-$Connect = mysql_connect($Host, $User, $Passwd);
+$Connect = mysql_connect($Host, $User, $Passwd, $DBName);
 
 function dbDo($command, $message="") {
 	$result=@mysql_query($command);

@@ -3,7 +3,6 @@
         <meta charset="utf-8">
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" >
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="css/leaflet.css" />
 		<title>Broadsport - sportveranstaltungen in der Nahe</title>
 	</head>
 	<body>
@@ -12,49 +11,7 @@
 		<h1>Broadsport - sportveranstaltungen in der Nähe</h1>
 		
         <a href="submit.html">Veranstaltung eintragen</a><br>
-		<!-- login field 
-		<p> Eine veranstaltung melden </p>		
-		<p> Kategorie </p>
-		<select>
-			<option value="Europa">Basketball</option>
-			<option value="America">Boxen</option>
-			<option value="Asia">Handball</option>
-			<option value="Africa">Volleyball</option>
-			<option value="Football">Football</option>
-			<option value="Basketball">Unihockey</option>
-			<option value="Handball">E-sports</option>
-		</select>
-		</p>
-		<p> Stadt <input type=text name="city"></p>
-		<p> PLZ <input type=text name="zip"></p>
-		<p> Adresse <input type=text name="adress"> </p>
-		<p> Kurze beschreibung <input type=text name="beschreibung"> </p>
-		<p><input type=submit name=submit value="Melden"> </p>
-		<p> Oder druecken sie einfach die Karte an!</p>
-		-->
-		<!-- Proving user's attempt to log in -->
-		<?php
-				require_once('connect.php');
-
-				$manager_name = $_POST['manager_name'];
-    
-				if (isset($manager_name)) {
-	  
-					$sql = "SELECT countries.country FROM
-							tours, personal, countries
-							WHERE 
-							tours.mcode = personal.id AND
-							tours.ccode = countries.ccode AND
-							family LIKE '".$manager_name."' 
-						;";
-	  
 		
-					$result = dbDo($sql , "");
-					if($result) dbList($result);
-				}
-				else{
-				}  
-		?>
 		<img src="scr.png"> <img>
 		<table>
 			<tr>
@@ -67,23 +24,7 @@
 			</tr>
 		</table>
 <p>News/Updates</p>
-<div id="map" height="180"></div>
-<script src="js/leaflet.js"></script>
-<script>
-// create a map in the "map" div, set the view to a given place and zoom
-var map = L.map('map').setView([51.505, -0.09], 13);
 
-// add an OpenStreetMap tile layer
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// add a marker in the given location, attach some popup content to it and open the popup
-L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
-    .openPopup();
-console.log(map);
-</script>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="leaflet/leaflet.css">
         <title>
             Broadsport.ch
         </title>
@@ -99,18 +99,18 @@
                     <td><input type="text" name="Stadt" /></td>
                 </tr>
                 <tr>
-                    <td>Datum</td>
+                    <td>Datum (Format: Jahr, Monat, Tag)</td>
                     <td><input type="date"/></td>
                 </tr>
                 <tr>
-                    <td>Uhrzeit</td>
+                    <td>Uhrzeit (Format: Stunden, Minuten, AM/PM)</td>
                     <td><input type="time"/></td>
                 </tr>
             </table>	
 			
 		    <input type="submit" />   <input type="reset" />
             
-            <!-- Map -->
+            <!-- Map 
             <div id="map" height="180"></div>
             <script src="js/leaflet.js"></script>
             <script>
@@ -128,9 +128,26 @@
                 .openPopup();
                 console.log(map);
             </script>
+            -->
             
+            <br><br>
             
             <!-- Map 2.0 -->
+            <div id="map" style="height: 200px;"></div>
+            <script src="leaflet/leaflet.js"></script>
+            <script>
+                var map = L.map('map').setView([46.951083, 7.438639], 13);
+                    
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18
+                }).addTo(map);
+                
+                L.marker([46.951083, 7.438639]).addTo(map)
+                .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
+                .openPopup();
+                console.log(map);
+            </script>
             
             <br><br><br><br>
         </div>

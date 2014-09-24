@@ -9,6 +9,21 @@
     
     <body>
         <div class="container">
+            <p></p>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collabse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">Home</a>
+                    </div>
+                </div>
+            </nav>
+            
             <h2>Eigene Veranstaltung eintragen</h2>
             <p>
             Hier kannst Du eine neue Veranstaltung eintragen.
@@ -17,18 +32,6 @@
                 <tr>
                     <td>Titel</td>
                     <td><input type="text" name="Titel" /></td>
-                </tr>
-                <tr>
-                    <td>Stadt</td>
-                    <td><input type="text" name="Stadt" /></td>
-                </tr>
-                <tr>
-                    <td>PLZ</td>
-                    <td><input type="text" name="PLZ" /></td>
-                </tr>
-                <tr>
-                    <td>Adresse</td>
-                    <td><input type="text" name="Adresse" /></td>
                 </tr>
                 <tr>
                     <td>Kurze beschreibung</td>
@@ -80,36 +83,31 @@
                         </select>
                     </td>
                 </tr>
-            </table>
-            
-            <form>
-                <fieldset>
-                    <legend> </legend>
-                    <label> Choose a date:<input type="date"/></label>
-                    <label> Choose a time:<input type="time"/></label>
-                </fieldset>
-            </form>		
+                <tr>
+                    <td>Adresse</td>
+                    <td><input type="text" name="Adresse" /></td>
+                </tr>
+                <tr>
+                    <td>PLZ</td>
+                    <td><input type="text" name="PLZ" /></td>
+                </tr>
+                <tr>
+                    <td>Stadt</td>
+                    <td><input type="text" name="Stadt" /></td>
+                </tr>
+                <tr>
+                    <td>Datum</td>
+                    <td><input type="date"/></td>
+                </tr>
+                <tr>
+                    <td>Uhrzeit</td>
+                    <td><input type="time"/></td>
+                </tr>
+            </table>	
 			
 		    <input type="submit" />   <input type="reset" />
-        
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collabse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html">Home</a>
-                    </div>
-                </div>
-            </nav>
             
-            
-            <a href="index.html">Home</a><br><br>
-            
-            <!-- Map -->
+            <!-- Map
             <div id="map" height="180"></div>
             <script src="js/leaflet.js"></script>
             <script>
@@ -127,6 +125,7 @@
                 .openPopup();
                 console.log(map);
             </script>
+            -->
         </div>
     </body>
 </html>

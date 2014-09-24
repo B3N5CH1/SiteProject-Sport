@@ -1,34 +1,35 @@
 <html>
-<head>
-<style>
-    .right {
-        position: absolute;
-        right: 0px;
-    }
-</style>
-<title>Script-Bereiche definieren</title>
-<script type="text/javascript">
-function Zeit () {
-  var Jetzt = new Date();
-  var Tag = Jetzt.getDate();
-  var Monat = Jetzt.getMonth() + 1;
-  var Jahr = Jetzt.getYear();
-  if (Jahr < 999)
-    Jahr += 1900;
-  var Vortag = ((Tag < 10) ? "0" : "");
-  var Vormon = ((Monat < 10) ? ".0" : ".");
-  var Datum = Vortag + Tag + Vormon + Monat + "." + Jahr;
-  document.write("<p>" + Datum + "</p>")
-}
-</script>
-</head>
-<body>
-
-<div class="right">
-<script type="text/javascript">
-  Zeit();
-</script>
-<a href="javascript.html">backbutton</a>
-
-</body>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            .right {
+                position: absolute;
+                right: 0px;
+            }
+        </style>
+        <title>Script-Bereiche definieren</title>
+        <script type="text/javascript">
+            function Zeit () {
+                var Jetzt = new Date();
+                var Tag = Jetzt.getDate();
+                var Monat = Jetzt.getMonth() + 1;
+                var Jahr = Jetzt.getYear();
+                if (Jahr < 999)
+                    Jahr += 1900;
+                var Vortag = ((Tag < 10) ? "0" : "");
+                var Vormon = ((Monat < 10) ? ".0" : ".");
+                var Datum = Vortag + Tag + Vormon + Monat + "." + Jahr;
+                document.write("<p>" + Datum + "</p>")
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div class="right">
+            <script type="text/javascript">
+                Zeit();
+            </script>
+        </div>
+        <a href="javascript.html">backbutton</a>
+    </body>
 </html>

@@ -13,63 +13,86 @@
             <p>
             Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
-        <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
-	    <tr><td>Titel</td><td><input type="text" name="Titel" /></td></tr>
-        <tr><td>Stadt</td><td><input type="text" name="Stadt" /></td></tr>
-	    <tr><td>PLZ  </td><td><input type="text" name="PLZ" /></td></tr>
-	    <tr><td>Adresse</td><td><input type="text" name="Adresse" /></td></tr>
-	    <tr><td>Kurze beschreibung</td><td><input type="text" name="Kurze beschreibung"/></td></tr>
-        <tr><td>Sportart</td><td><select>
-            <option value="Football">Football</option>
-            <option value="Basketball">Basketball</option>
-            <option value="Handball">Handball</option>
-            <option value="Volleyball">Volleyball</option>
-            <option value="Tennis">Tennis</option>
-            <option value="Rugby">Rugby</option>
-            <option value="Table tennis">Table tennis</option>
-            <option value="Squash">Squash</option>
-            <option value="Ice Hockey">Ice Hocky</option>
-            <option value="Luge">Luge</option>
-            <option value="Skeleton">Skeleton</option>
-            <option value="Alpine Skiing">Alpine Skiing</option>
-            <option value="Freestyle Skiing">Freestyle Skiing</option>
-            <option value="Speed Skating">Speed Skating</option>
-            <option value="Baseball">Baseball</option>
-            <option value="Cricket">Cricket</option>
-        </select></td></tr>
-		<tr><td>Kontinent</td><td><select>
-			<option value="Europa">Europa</option>
-            <option value="America">America</option>
-            <option value="Asien">Asien</option>
-            <option value="Afrika">Afrika</option>
-		</select></td></tr>
-			<tr><td>Reichweite</td><td><select>
-			<option value="Lokal">Lokal</option>
-			<option value="National">National</option>
-			<option value="Kontinental">Kontinental</option>
-            <option value="Weltweit">Weltweit</option>
-			<option value="Olympisch">Olympisch</option>
+            <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
+                <tr>
+                    <td>Titel</td>
+                    <td><input type="text" name="Titel" /></td>
+                </tr>
+                <tr>
+                    <td>Stadt</td>
+                    <td><input type="text" name="Stadt" /></td>
+                </tr>
+                <tr>
+                    <td>PLZ</td>
+                    <td><input type="text" name="PLZ" /></td>
+                </tr>
+                <tr>
+                    <td>Adresse</td>
+                    <td><input type="text" name="Adresse" /></td>
+                </tr>
+                <tr>
+                    <td>Kurze beschreibung</td>
+                    <td><input type="text" name="Kurze beschreibung"/></td>
+                </tr>
+                <tr>
+                    <td>Sportart</td>
+                    <td>
+                        <select>
+                            <option value="Football">Football</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Handball">Handball</option>
+                            <option value="Volleyball">Volleyball</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Rugby">Rugby</option>
+                            <option value="Table tennis">Table tennis</option>
+                            <option value="Squash">Squash</option>
+                            <option value="Ice Hockey">Ice Hocky</option>
+                            <option value="Luge">Luge</option>
+                            <option value="Skeleton">Skeleton</option>
+                            <option value="Alpine Skiing">Alpine Skiing</option>
+                            <option value="Freestyle Skiing">Freestyle Skiing</option>
+                            <option value="Speed Skating">Speed Skating</option>
+                            <option value="Baseball">Baseball</option>
+                            <option value="Cricket">Cricket</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kontinent</td>
+                    <td>
+                        <select>
+                            <option value="Europa">Europa</option>
+                            <option value="America">America</option>
+                            <option value="Asien">Asien</option>
+                            <option value="Afrika">Afrika</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reichweite</td>
+                    <td>
+                        <select>
+                            <option value="Lokal">Lokal</option>
+                            <option value="National">National</option>
+                            <option value="Kontinental">Kontinental</option>
+                            <option value="Weltweit">Weltweit</option>
+                            <option value="Olympisch">Olympisch</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            
+            <form>
+                <fieldset>
+                    <legend> </legend>
+                    <label> Choose a date:<input type="date"/></label>
+                    <label> Choose a time:<input type="time"/></label>
+                </fieldset>
+            </form>		
 			
-			
-			</select></td></tr>
-
+		    <input type="submit" />   <input type="reset" />
         
-            
-	</table>
-            
-	<form>
-            <fieldset>
-			<legend> </legend>
-			<label> Choose a date:<input type="date"/></label>
-			<label> Choose a time:<input type="time"/></label>
-			
-			</fieldset>
-	</form>		
-			
-		    <input type="submit" >   <input type="reset" />
-        
-            
-			<nav class="navbar navbar-default" role="navigation">
+            <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collabse-1">
@@ -79,34 +102,31 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="index.html">Home</a>
+                    </div>
                 </div>
-                
-            </div>
-        </nav>
-        <a href="index.html">Home</a><br><br>
-        
-    
-        
-		<!-- Proving user's attempt to log in -->
-		
-    
-        <div id="map" height="180"></div>
-        <script src="js/leaflet.js"></script>
-        <script>
-            // create a map in the "map" div, set the view to a given place and zoom
-            var map = L.map('map').setView([51.505, -0.09], 13);
+            </nav>
+            
+            
+            <a href="index.html">Home</a><br><br>
+            
+            <!-- Map -->
+            <div id="map" height="180"></div>
+            <script src="js/leaflet.js"></script>
+            <script>
+                // create a map in the "map" div, set the view to a given place and zoom
+                var map = L.map('map').setView([51.505, -0.09], 13);
 
-            // add an OpenStreetMap tile layer
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+                // add an OpenStreetMap tile layer
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
 
-            // add a marker in the given location, attach some popup content to it and open the popup
-            L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
-            .openPopup();
-            console.log(map);
-        </script>
+                // add a marker in the given location, attach some popup content to it and open the popup
+                L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
+                .openPopup();
+                console.log(map);
+            </script>
         </div>
     </body>
 </html>

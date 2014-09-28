@@ -24,45 +24,61 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="submit.php">Veranstaltung eintragen</a></li>
                                 <li><a href="About.html">About</a></li>
-                                <!--<li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                    </ul> -->
-                                </li>
                             </ul>
-                            <form class="navbar-form navbar-left" role="search">
+                            <!-- <form class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Search">
                                 </div>
                                 <button type="submit" class="btn btn-default">Submit</button>
-                            </form> <!--
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Link</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div> -->
+                            </form> -->
+                        </div>
                     </div>
                 </div>
             </nav>
         
-        <h1>Broadsport - Sportveranstaltungen in der Nähe</h1>
-        <h2>News / Updates</h2>
+            <h1>Broadsport - Sportveranstaltungen in der Nähe</h1>
+            <h2>News / Updates</h2>
+        
+            <table border="1">
+                <?php 
+                    $sql = "SELECT * FROM adressen";
+ 
+                    $db_erg = mysqli_query( $db_link, $sql );
+                    if ( ! $db_erg )
+                    {
+                        die('Ungültige Abfrage: ' . mysqli_error());
+                    }
+ 
+                
+                    while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
+                    {
+                        echo "<tr>";
+                        echo "<td>". $zeile['id'] . "</td>";
+                        echo "<td>". $zeile['nachname'] . "</td>";
+                        echo "<td>". $zeile['vorname'] . "</td>";
+                        echo "<td>". $zeile['akuerzel'] . "</td>";
+                        echo "<td>". $zeile['strasse'] . "</td>";
+                        echo "<td>". $zeile['plz'] . "</td>";
+                        echo "<td>". $zeile['telefon'] . "</td>";
+                        echo "</tr>";
+                    }
+        
+                    $table = "events";
+                    $sent = $_POST['send'];
+                    $title = $_POST['Titel'];
+                    $descript = $_POST['Kurze_beschreibung'];
+                    $sportart = $_POST['sportart'];
+                    $continent = $_POST['continent'];
+                    $reach = $_POST['reichweite'];
+                    $adress = $_POST['Adresse'];
+                    $zip = $_POST['PLZ'];
+                    $city = $_POST['Stadt'];
+                    $dte = $_POST['Datum'];
+                    $time = $_POST['Uhrzeit'];
+
+                ?>
+            
+            </table>
         </div>
     </body>
 </html>

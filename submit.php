@@ -190,7 +190,7 @@ if(isset($sent)){
             
             <!-- Map 2.0 -->
             <br><br>
-            <div id="map" style="height: 200px;"></div>
+            <div id="map" style="height: 250px;"></div>
             <script src="leaflet/leaflet.js"></script>
             <script>
                 var map = L.map('map').setView([46.951083, 7.438639], 16);

@@ -2,7 +2,7 @@
 
 $Host = "localhost"; 
 $User = "bsport";      
-$Passwd = "PHArU6Yu";    
+$Passwd = "PHArU6yU";    
 $DBName = "evts";     
 
 $Connect = mysql_connect($Host, $User, $Passwd, $DBName);

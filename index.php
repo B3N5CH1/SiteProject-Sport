@@ -44,7 +44,7 @@
                 
                 //require_once('php/connect.php');
                 
-                $Connect = mysqli_connect("localhost", "bsport", "PHArU6Yu", "evts");
+                $Connect = mysqli_connect("localhost", "bsport", "PHArU6yU", "evts");
 
                 $sql = "SELECT * FROM events";
  

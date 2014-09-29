@@ -1,8 +1,8 @@
 <?php
 
 $Host = "localhost"; 
-$User = "usr";      
-$Passwd = "12345";    
+$User = "bsport";      
+$Passwd = "PHArU6Yu";    
 $DBName = "evts";     
 
 $Connect = mysql_connect($Host, $User, $Passwd, $DBName);

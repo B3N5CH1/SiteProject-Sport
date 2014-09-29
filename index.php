@@ -41,17 +41,24 @@
         
             <table border="1">
                 <?php 
-                    $sql = "SELECT * FROM adressen";
+                
+                //require_once('php/connect.php');
+                
+                $Connect = mysqli_connect("localhost", "usr", "12345", "evts");
+
+                $sql = "SELECT * FROM events";
  
-                    $db_erg = mysqli_query( $db_link, $sql );
-                    if ( ! $db_erg )
-                    {
-                        die('Ungültige Abfrage: ' . mysqli_error());
-                    }
+                $db_erg = mysqli_query( $Connect, $sql );
+                if ( ! $db_erg )
+                {
+                    die('Ungültige Abfrage: ' . mysqli_error($Connect));
+                }
  
                 
                     while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
                     {
+                        echo "<h3>". $zeile['title'] . " findet am ".$zeile['datum'] . " um " .$zeile['zeit'] . " statt.</h3>";
+                        /*echo '<table border="1">';
                         echo "<tr>";
                         echo "<td>". $zeile['id'] . "</td>";
                         echo "<td>". $zeile['nachname'] . "</td>";
@@ -61,21 +68,23 @@
                         echo "<td>". $zeile['plz'] . "</td>";
                         echo "<td>". $zeile['telefon'] . "</td>";
                         echo "</tr>";
+                        echo "</table>";*/
                     }
-        
-                    $table = "events";
-                    $sent = $_POST['send'];
-                    $title = $_POST['Titel'];
-                    $descript = $_POST['Kurze_beschreibung'];
-                    $sportart = $_POST['sportart'];
-                    $continent = $_POST['continent'];
-                    $reach = $_POST['reichweite'];
-                    $adress = $_POST['Adresse'];
-                    $zip = $_POST['PLZ'];
-                    $city = $_POST['Stadt'];
-                    $dte = $_POST['Datum'];
-                    $time = $_POST['Uhrzeit'];
-
+                
+                /*
+                $table = "events";
+                $sent = $_POST['send'];
+                $title = $_POST['Titel'];
+                $descript = $_POST['Kurze_beschreibung'];
+                $sportart = $_POST['sportart'];
+                $continent = $_POST['continent'];
+                $reach = $_POST['reichweite'];
+                $adress = $_POST['Adresse'];
+                $zip = $_POST['PLZ'];
+                $city = $_POST['Stadt'];
+                $dte = $_POST['Datum'];
+                $time = $_POST['Uhrzeit'];
+                */
                 ?>
             
             </table>

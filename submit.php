@@ -3,6 +3,10 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" href="leaflet/leaflet.css">
+        <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script language="javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
+        <script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
+        <link rel="stylesheet" href="https://raw.githubusercontent.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.css">
         <title>
             Broadsport.ch
         </title>
@@ -183,6 +187,25 @@
             </script>
             
             <br><br><br><br>
+            
+            <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                    language: 'ru'
+                });
+            });
+        </script>
+    </div> <br><br><br><br>
         </div>
     </body>
 </html>

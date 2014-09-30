@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2014 at 01:26 PM
+-- Generation Time: Sep 30, 2014 at 03:11 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.3.29
 
@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS `events` (
   `monat` int(11) NOT NULL,
   `tag` int(11) NOT NULL,
   `stunde` int(11) NOT NULL,
-  `minute` int(11) NOT NULL
+  `minute` int(11) NOT NULL,
+  `website` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --

@@ -61,6 +61,10 @@
                     <td><input type="text" name="Kurze_beschreibung"/></td>
                 </tr>
                 <tr>
+                    <td>Webseite des Veranstalters</td>
+                    <td><input type="text" name="Webseite"/></td>
+                </tr>
+                <tr>
                     <td>Sportart</td>
                     <td>
                         <select name="sportart">

@@ -49,7 +49,7 @@
             <p>
             Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
-            <form method="POST" action="submit.php">
+            <form method="POST" action="success.php">
             <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
 				
                 <tr>
@@ -64,22 +64,23 @@
                     <td>Sportart</td>
                     <td>
                         <select name="sportart">
-                            <option value="Football">Football</option>
+                            <option value="Fussball">Fusball</option>
                             <option value="Basketball">Basketball</option>
                             <option value="Handball">Handball</option>
                             <option value="Volleyball">Volleyball</option>
                             <option value="Tennis">Tennis</option>
                             <option value="Rugby">Rugby</option>
-                            <option value="Table tennis">Table tennis</option>
+                            <option value="Tischtennis">Tischtennis</option>
                             <option value="Squash">Squash</option>
-                            <option value="Ice Hockey">Ice Hocky</option>
-                            <option value="Luge">Luge</option>
+                            <option value="Eis Hockey">Eis Hockey</option>
+                            <option value="Rennrodeln">Rennrodeln</option>
                             <option value="Skeleton">Skeleton</option>
                             <option value="Alpine Skiing">Alpine Skiing</option>
                             <option value="Freestyle Skiing">Freestyle Skiing</option>
-                            <option value="Speed Skating">Speed Skating</option>
+                            <option value="Speed Skating">Eisschnelllauf</option>
                             <option value="Baseball">Baseball</option>
                             <option value="Cricket">Cricket</option>
+                            <option value="Andere">Anderes</option>
                         </select>
                     </td>
                 </tr>
@@ -88,7 +89,7 @@
                     <td>
                         <select name="continent">
                             <option value="Europa">Europa</option>
-                            <option value="America">America</option>
+                            <option value="America">Amerika</option>
                             <option value="Asien">Asien</option>
                             <option value="Afrika">Afrika</option>
                         </select>
@@ -119,12 +120,19 @@
                     <td><input type="text" name="Stadt" /></td>
                 </tr>
                 <tr>
-                    <td>Datum</td>
-                    <td><input type="date" name="Datum"/></td>
+                    <td>Datum (JJJJ-MM-TT)</td>
+                    <td><input type="text" name="Jahr" maxlength="4" size="3">
+                        &nbsp;
+                        <input type="text" name="Monat" maxlength="2" size="1">
+                        &nbsp;
+                        <input type="text" name="Tag" maxlength="2" size="1"></td>
                 </tr>
                 <tr>
-                    <td>Uhrzeit</td>
-                    <td><input type="time" name="Uhrzeit"/></td>
+                    <td>Uhrzeit (SS-HH)</td>
+                    <td><input type="text" name="Stunde" maxlength="2" size="1">
+                        &nbsp;
+                        <input type="text" name="Minute" maxlength="2" size="1">
+                    </td>
                 </tr>
 				
 				
@@ -132,38 +140,6 @@
 			<input type=submit name=send value="Send!">
 			<input type="reset" />
             </form>
-            <?php	
-
-                require_once('php/connect.php');
-
-                $table = "events";
-                $sent = $_POST['send'];
-                $title = $_POST['Titel'];
-                $descript = $_POST['Kurze_beschreibung'];
-                $sportart = $_POST['sportart'];
-                $continent = $_POST['continent'];
-                $reach = $_POST['reichweite'];
-                $adress = $_POST['Adresse'];
-                $zip = $_POST['PLZ'];
-                $city = $_POST['Stadt'];
-                $dte = $_POST['Datum'];
-                $time = $_POST['Uhrzeit'];
-
-                if(isset($sent)){
-                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`, `city`) 
-                    VALUES 
-                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."', '".$city."');";
-                    dbDo($sql);
-                }
-
-            ?>	
-			
-			
-			
-			
-			
-			
-			
 				         
             
             <!-- Map 2.0 -->
@@ -187,25 +163,6 @@
             </script>
             
             <br><br><br><br>
-            
-            <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker2').datetimepicker({
-                    language: 'ru'
-                });
-            });
-        </script>
-    </div> <br><br><br><br>
         </div>
     </body>
 </html>

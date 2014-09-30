@@ -1,11 +1,20 @@
 <html>
-	<head> 
-        <title>Broadsport - Sportveranstaltungen in der Nähe</title>
+    <head>
         <meta charset="utf-8">
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" >
-		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-	</head>
-	<body>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" href="leaflet/leaflet.css">
+        <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script language="javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
+        <script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
+        <link rel="stylesheet" href="https://raw.githubusercontent.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.css">
+        <title>
+            Broadsport.ch
+        </title>
+		
+    </head>
+    
+    <body>
+		
         <div class="container">
             <p></p>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -35,43 +44,11 @@
                     </div>
                 </div>
             </nav>
-        
-            <h1>Broadsport - Sportveranstaltungen in der Nähe</h1>
-            <h2>News / Updates</h2>
-        
-            <table border="1">
-                <?php 
-                
-                //require_once('php/connect.php');
-                
-                $Connect = mysqli_connect("localhost", "bsport", "PHArU6yU", "evts");
+            
+            <?php	
 
-                $sql = "SELECT * FROM events";
- 
-                $db_erg = mysqli_query( $Connect, $sql );
-                if ( ! $db_erg )
-                {
-                    die('Ungültige Abfrage: ' . mysqli_error($Connect));
-                }
- 
-                
-                    while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
-                    {
-                        echo "<h3>". $zeile['title'] . " findet am ". $zeile['jahr'] . ".". $zeile['monat'] . ".". $zeile['tag'] . ". um ". $zeile['stunde'] . ":". $zeile['minute'] . " statt.</h3>";
-                        /*echo '<table border="1">';
-                        echo "<tr>";
-                        echo "<td>". $zeile['id'] . "</td>";
-                        echo "<td>". $zeile['nachname'] . "</td>";
-                        echo "<td>". $zeile['vorname'] . "</td>";
-                        echo "<td>". $zeile['akuerzel'] . "</td>";
-                        echo "<td>". $zeile['strasse'] . "</td>";
-                        echo "<td>". $zeile['plz'] . "</td>";
-                        echo "<td>". $zeile['telefon'] . "</td>";
-                        echo "</tr>";
-                        echo "</table>";*/
-                    }
-                
-                /*
+                require_once('php/connect.php');
+
                 $table = "events";
                 $sent = $_POST['send'];
                 $title = $_POST['Titel'];
@@ -82,12 +59,28 @@
                 $adress = $_POST['Adresse'];
                 $zip = $_POST['PLZ'];
                 $city = $_POST['Stadt'];
-                $dte = $_POST['Datum'];
-                $time = $_POST['Uhrzeit'];
-                */
-                ?>
+                $year = $_POST['Jahr'];
+                $month = $_POST['Monat'];
+                $day = $_POST['Tag'];
+                $hour = $_POST['Stunde'];
+                $minute = $_POST['Minute'];
+
+                if(isset($sent)){
+                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
+                    VALUES 
+                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".minute."');";
+                    dbDo($sql);
+                }
+
+            ?>	
             
-            </table>
+            <h1>
+                Deine Veranstaltung wurde eingetragen!
+            </h1>
+            <h2>
+                Vielen Dank!
+            </h2>
+            
         </div>
     </body>
 </html>

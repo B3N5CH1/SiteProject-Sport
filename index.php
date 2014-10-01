@@ -89,5 +89,33 @@
             
             </table>
         </div>
+		
+		<!-- Map 2.0 -->
+            <br><br>
+            <div id="map" style="height: 350px; width:350px; float:right"></div>
+            
+			<script src="leaflet/leaflet.js"></script>
+			
+            <script>
+                 var map = L.map('map').setView([46.951083, 7.438639], 16);
+                
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18
+                }).addTo(map);
+				
+				map.on('click', function(e) {
+				    L.marker(e.latlng).openPopup();
+					//element = document.getElementById("latlng");
+					//element.value = e.latlng.lat;
+					//console.log(e.latlng);
+					//.bindPopup('Event Position')
+					//.addTo(map)
+				});
+            </script>
+      
+            <br><br><br><br>
+        </div>
+		
     </body>
 </html>

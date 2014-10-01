@@ -88,7 +88,7 @@
                 ?>
             
             </table>
-        </div>
+        
 		
 		<!-- Map 2.0 -->
             <br><br>
@@ -116,6 +116,6 @@
       
             <br><br><br><br>
         </div>
-		
+		</div>
     </body>
 </html>

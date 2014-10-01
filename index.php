@@ -98,21 +98,28 @@
 			<script src="leaflet/leaflet.js"></script>
 			
             <script>
-                 var map = L.map('map').setView([46.951083, 7.438639], 16);
+            var map = L.map('map').setView([46.951083, 7.438639], 16);
                 
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                    maxZoom: 18
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
                 }).addTo(map);
 				
-				map.on('click', function(e) {
-				    L.marker(e.latlng).openPopup();
-					//element = document.getElementById("latlng");
-					//element.value = e.latlng.lat;
-					//console.log(e.latlng);
-					//.bindPopup('Event Position')
-					//.addTo(map)
-				});
+			
+			var new_event_marker;
+
+			map.on('click', function(e) {
+
+			if(typeof(new_event_marker)==='undefined')
+			{
+				new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
+				new_event_marker.addTo(map);        
+			}
+			else 
+			{
+				new_event_marker.setLatLng(e.latlng);         
+			}
+			});
             </script>
       
             <br><br><br><br>

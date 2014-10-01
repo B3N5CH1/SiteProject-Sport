@@ -4,6 +4,7 @@
         <meta charset="utf-8">
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" >
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="leaflet/leaflet.css">
 	</head>
 	<body>
         <div class="container">

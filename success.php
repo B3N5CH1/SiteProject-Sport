@@ -63,12 +63,12 @@
                 $month = $_POST['Monat'];
                 $day = $_POST['Tag'];
                 $hour = $_POST['Stunde'];
-                $minute = $_POST['Minute'];
+                $minutes = $_POST['Minute'];
 
                 if(isset($sent)){
                     $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
                     VALUES 
-                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".minute."');";
+                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".$minutes."');";
                     dbDo($sql);
                 }
 

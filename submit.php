@@ -53,19 +53,33 @@
             <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
 				
                 <tr>
-                    <td>Titel</td>
-                    <td><input type="text" name="Titel" /></td>
+                    <td>
+                        Titel
+                    </td>
+                    <td>
+                        <input type="text" name="Titel" />
+                    </td>
                 </tr>
                 <tr>
-                    <td>Kurze beschreibung</td>
-                    <td><input type="text" name="Kurze_beschreibung"/></td>
+                    <td>
+                        Kurze beschreibung
+                    </td>
+                    <td>
+                        <input type="text" name="Kurze_beschreibung"/>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Webseite des Veranstalters</td>
-                    <td><input type="text" name="Webseite"/></td>
+                    <td>
+                        Webseite des Veranstalters
+                    </td>
+                    <td>
+                        <input type="text" name="Webseite"/>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Sportart</td>
+                    <td>
+                        Sportart
+                    </td>
                     <td>
                         <select name="sportart">
                             <option value="Fussball">Fusball</option>
@@ -89,7 +103,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Kontinent</td>
+                    <td>
+                        Kontinent
+                    </td>
                     <td>
                         <select name="continent">
                             <option value="Europa">Europa</option>
@@ -100,7 +116,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Reichweite</td>
+                    <td>
+                        Reichweite
+                    </td>
                     <td>
                         <select name="reichweite">
                             <option value="Lokal">Lokal</option>
@@ -112,30 +130,49 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Adresse</td>
-                    <td><input type="text" name="Adresse" /></td>
+                    <td>
+                        Adresse
+                    </td>
+                    <td>
+                        <input type="text" name="Adresse" />
+                    </td>
                 </tr>
                 <tr>
-                    <td>PLZ</td>
-                    <td><input type="text" name="PLZ" /></td>
+                    <td>
+                        PLZ
+                    </td>
+                    <td>
+                        <input type="text" name="PLZ" />
+                    </td>
                 </tr>
                 <tr>
-                    <td>Stadt</td>
-                    <td><input type="text" name="Stadt" /></td>
+                    <td>
+                        Stadt
+                    </td>
+                    <td>
+                        <input type="text" name="Stadt" />
+                    </td>
                 </tr>
                 <tr>
-                    <td>Datum (JJJJ-MM-TT)</td>
-                    <td><input type="text" name="Jahr" maxlength="4" size="3">
+                    <td>
+                        Datum (JJJJ-MM-TT)
+                    </td>
+                    <td>
+                        <input type="text" name="Jahr" maxlength="4" size="3" />
                         &nbsp;
-                        <input type="text" name="Monat" maxlength="2" size="1">
+                        <input type="text" name="Monat" maxlength="2" size="1" />
                         &nbsp;
-                        <input type="text" name="Tag" maxlength="2" size="1"></td>
+                        <input type="text" name="Tag" maxlength="2" size="1" />
+                    </td>
                 </tr>
                 <tr>
-                    <td>Uhrzeit (SS-HH)</td>
-                    <td><input type="text" name="Stunde" maxlength="2" size="1">
+                    <td>
+                        Uhrzeit (SS-HH)
+                    </td>
+                    <td>
+                        <input type="text" name="Stunde" maxlength="2" size="1" />
                         &nbsp;
-                        <input type="text" name="Minute" maxlength="2" size="1">
+                        <input type="text" name="Minute" maxlength="2" size="1" />
                     </td>
                 </tr>
 				

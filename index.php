@@ -36,7 +36,8 @@
                     </div>
                 </div>
             </nav>
-        
+            
+            <br>
             <h1>Broadsport - Sportveranstaltungen in der Nähe</h1>
             <h2>News / Updates</h2>
         

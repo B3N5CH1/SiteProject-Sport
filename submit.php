@@ -42,6 +42,7 @@
                 </div>
             </nav>
             
+            <br>
             <h2>Eigene Veranstaltung eintragen</h2>
             <p>
             Hier kannst Du eine neue Veranstaltung eintragen.

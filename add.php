@@ -14,6 +14,133 @@
 		
         <div class="container">
             <p></p>
+            
+            
+            
+            <?php	
+
+                require_once('php/connect.php');
+
+                $table = "events";
+                $sent = $_POST['send'];
+                $title = htmlentities($_POST['Titel']);
+                $descript = htmlentities($_POST['Beschreibung']);
+                $sportart = htmlentities($_POST['sportart']);
+                $continent = htmlentities($_POST['continent']);
+                $reach = htmlentities($_POST['reichweite']);
+                $adress = htmlentities($_POST['Adresse']);
+                $zip = htmlentities($_POST['PLZ']);
+                $city = htmlentities($_POST['Stadt']);
+                $year = htmlentities($_POST['Jahr']);
+                $month = htmlentities($_POST['Monat']);
+                $day = htmlentities($_POST['Tag']);
+                $hour = htmlentities($_POST['Stunde']);
+                $minutes = htmlentities($_POST['Minute']);
+                $errors = array();
+                
+                if (isset($sent)) {
+                    
+                    //variablen auf Inhalt prüfen und ggf. den Fehler (hier einfach der Feldname) in das Array $errors packen.
+                    if ($title == '') {
+                        $errors[] = 'Kein Titel';
+                    }
+                    
+                    if ($descript == '') {
+                        $errors[] = 'Keine Beschreibung';
+                    } 
+                    
+                    if ($day == '') {
+                        $errors[] = 'Kein Tag';
+                    } else {
+                        if (!($day>=1 && $day<=31)) {
+                            $errors[] = 'Inkorrekter Tag';
+                        }
+                    }
+                    
+                    if ($month == '') {
+                        $errors[] = 'Kein Monat';
+                    } else {
+                        if (!($month>=1 && $month<=12)) {
+                            $errors[] = 'Inkorrekter Monat';
+                        } else {
+                            if (!($month == 01 || 03 || 05 || 07 || 08 || 10 || 12)) {
+                                if ($day == 31){
+                                    $errors[] = 'Unmöglicher Tag';
+                                }
+                            }
+                        }
+                    }
+                    
+                    if ($year == '') {
+                        $errors[] = 'Kein Jahr';
+                    } else {
+                        if (!($year>=2014 && $year<=2032)) {
+                            $errors[] = 'Inkorrektes Jahr';
+                        } else {
+                            if ($year == 2016 || 2020 || 2024 || 2028 || 2032) {
+                                if ($month == (02 || 2)) {
+                                    if ($day>29) {
+                                        $errors[] = 'Unmöglicher Tag';
+                                    }
+                                }
+                            } else {
+                                if ($month == (02 || 2)) {
+                                    if ($day>28) {
+                                        $errors[] = 'Unmöglicher Tag';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    if ($hour == '') {
+                        $errors[] = 'Keine Stunde';
+                    } else {
+                        if (!($hour>=0 && $hour<=24)) {
+                            $errors[] = 'Inkorrekte Stunde';
+                        }
+                    }
+                    
+                    if ($minutes == '') {
+                        $errors[] = 'Keine Minute';
+                    } else {
+                        if (!($minutes>=0 && $minutes<60)) {
+                            $errors[] = 'Inkorrekte Minuten';    
+                        }
+                    }
+                    if (count($errors)==0) {
+                        $sql = "INSERT INTO `".$table."` 
+                            (`id` ,`title`, `description` ,
+                            `sportart`, `continent`, `reach`,
+                            `adress`, `zip`, `city`,
+                            `jahr`, `monat`, `tag`,
+                            `stunde`, `minute`) 
+                        VALUES 
+                            ('', '".$title."', '".$descript."',
+                            '".$sportart."', '".$continent."', '".$reach."',
+                            '".$adress."', '".$zip."', '".$city."',
+                            '".$year."', '".$month."', '".$day."',
+                            '".$hour."', '".$minutes."');";
+                        dbDo($sql);
+                        header("Location: /success.php");
+                    } else {
+                        echo '<br>Folgende Fehler traten auf:<br>' . implode('<br>', $errors);
+                    }
+                }
+                
+                
+                
+                
+                /*if(isset($sent)){
+                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
+                    VALUES 
+                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".$minutes."');";
+                    dbDo($sql);
+                }*/
+
+            ?>
+            
+            
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="container-fluid">
@@ -42,105 +169,6 @@
                 </div>
             </nav>
             
-            <?php	
-
-                require_once('php/connect.php');
-
-                $table = "events";
-                $sent = $_POST['send'];
-                $title = htmlentities($_POST['Titel']);
-                $descript = htmlentities($_POST['Kurze_beschreibung']);
-                $sportart = htmlentities($_POST['sportart']);
-                $continent = htmlentities($_POST['continent']);
-                $reach = htmlentities($_POST['reichweite']);
-                $adress = htmlentities($_POST['Adresse']);
-                $zip = htmlentities($_POST['PLZ']);
-                $city = htmlentities($_POST['Stadt']);
-                $year = htmlentities($_POST['Jahr']);
-                $month = htmlentities($_POST['Monat']);
-                $day = htmlentities($_POST['Tag']);
-                $hour = htmlentities($_POST['Stunde']);
-                $minutes = htmlentities($_POST['Minute']);
-                $errors = array();
-                
-                if (isset($sent)) {
-                    
-                    //variablen auf Inhalt prüfen und ggf. den Fehler (hier einfach der Feldname) in das Array $errors packen.
-                    if ($title == '') {
-                        $errors[] = 'Titel';
-                    }
-                    
-                    if ($descript = '') {
-                        $errors[] = 'Beschreibung';
-                    } 
-                    
-                    if ($day = '') {
-                        $errors[] = 'Tag';
-                    } else {
-                        if (!($day>=1 && $day<=31)) {
-                            $errors[] = 'Inkorrekter Tag';
-                        }
-                    }
-                    
-                    if ($month = '') {
-                        $errors[] = 'Monat';
-                    } else {
-                        if (!($month> 0 && $month<13)) {
-                            $errors[] = 'Inkorrekter Monat';
-                        } else {
-                              
-                        }
-                    }
-                    
-                    if ($year = '') {
-                        $errors[] = 'Jahr';
-                    } else {
-                        if (!($year>=2014 && $year<2030)) {
-                            $errors[] = 'Inkorrektes Jahr';
-                        } else {
-                            if ($year == 2016 || 2020 || 2024 || 2028) {
-                                if ($month = (02 || 2)) {
-                                    if ($day>29) {
-                                        $errors[] = 'Unmöglicher Tag';
-                                    }
-                                }
-                            } else {
-                                if ($month = (02 || 2)) {
-                                    if ($day>28) {
-                                        $errors[] = 'Unmöglicher Tag';
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    if ($hour = '') {
-                        $errors[] = 'Stunde';
-                    } else {
-                        if (!($hour>=0 && $hour<25)) {
-                            $errors[] = 'Inkorrekte Stunde';
-                        }
-                    }
-                    
-                    if ($miutes = '') {
-                        $errors[] = 'Minute';
-                    } else {
-                        if (!($minutes>=0 && $minutes<=60)) {
-                            $errors[] = 'Inkorrekte Minuten';    
-                        }
-                    }
-                }
-                
-                
-                
-                /*if(isset($sent)){
-                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
-                    VALUES 
-                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".$minutes."');";
-                    dbDo($sql);
-                }*/
-
-            ?>
             
             
             <br>
@@ -153,18 +181,18 @@
 				
                 <tr>
                     <td>
-                        Titel
+                        Titel*
                     </td>
                     <td>
-                        <input type="text" name="Titel" />
+                        <input type="text" name="Titel" value="<?php echo $title ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Kurze beschreibung
+                        Kurze beschreibung*
                     </td>
                     <td>
-                        <input type="text" name="Kurze_beschreibung"/>
+                        <input type="text" name="Beschreibung" value="<?php echo $descript ?>"/>
                     </td>
                 </tr>
                 <tr>
@@ -254,24 +282,24 @@
                 </tr>
                 <tr>
                     <td>
-                        Datum (JJJJ-MM-TT)
+                        Datum (JJJJ-MM-TT)*
                     </td>
                     <td>
-                        <input type="text" name="Jahr" maxlength="4" size="3" />
+                        <input type="text" name="Jahr" maxlength="4" size="3" value="<?php echo $year ?>"/>
                         &nbsp;
-                        <input type="text" name="Monat" maxlength="2" size="1" />
+                        <input type="text" name="Monat" maxlength="2" size="1" value="<?php echo $month ?>"/>
                         &nbsp;
-                        <input type="text" name="Tag" maxlength="2" size="1" />
+                        <input type="text" name="Tag" maxlength="2" size="1" value="<?php echo $day ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Uhrzeit (SS-HH)
+                        Uhrzeit (SS-HH)*
                     </td>
                     <td>
-                        <input type="text" name="Stunde" maxlength="2" size="1" />
+                        <input type="text" name="Stunde" maxlength="2" size="1" value="<?php echo $hour ?>"/>
                         &nbsp;
-                        <input type="text" name="Minute" maxlength="2" size="1" />
+                        <input type="text" name="Minute" maxlength="2" size="1" value="<?php echo $minutes ?>"/>
                     </td>
                 </tr>
 				

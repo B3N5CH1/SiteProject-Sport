@@ -63,11 +63,11 @@
                 $minutes = htmlentities($_POST['Minute']);
                 $errors = array();
                 
-                if (isset($sent) {
+                if (isset($sent)) {
                     
                     //variablen auf Inhalt prüfen und ggf. den Fehler (hier einfach der Feldname) in das Array $errors packen.
                     if ($title == '') {
-                        $errors[] = 'Titel'
+                        $errors[] = 'Titel';
                     }
                     if ($descript = '') {
                         $errors[] = 'Beschreibung';
@@ -75,22 +75,22 @@
                     if ($year = '') {
                         $errors[] = 'Jahr';
                     } else {
-                        if ($year = !(> 2014 && <2030)){
+                        if (!($year>2014 && $year<2030)){
                             $errors[] = 'Inkorrektes Jahr';
                         }
                     }
                     if ($month = '') {
                         $errors[] = 'Monat';
                     } else {
-                        if ($month = !(> 0 && <13)) {
+                        if (!($month> 0 && $month<13)) {
                             $errors[] = 'Inkorrekter Monat';
                         }
                     }
                     if ($day = '') {
                         $errors[] = 'Tag';
                     } else {
-                        if ($month = 02 || 2) {
-                            if ($day = >29) {
+                        if ($month = (02 || 2)) {
+                            if ($day>29) {
                                 $errors[] = 'Unmöglicher Tag';
                             }
                         }
@@ -119,7 +119,7 @@
             <p>
             Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
-            <form method="POST" action="success.php">
+            <form method="POST" action="add.php">
             <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
 				
                 <tr>

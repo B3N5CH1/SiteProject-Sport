@@ -69,39 +69,68 @@
                     if ($title == '') {
                         $errors[] = 'Titel';
                     }
+                    
                     if ($descript = '') {
                         $errors[] = 'Beschreibung';
                     } 
-                    if ($year = '') {
-                        $errors[] = 'Jahr';
+                    
+                    if ($day = '') {
+                        $errors[] = 'Tag';
                     } else {
-                        if (!($year>2014 && $year<2030)){
-                            $errors[] = 'Inkorrektes Jahr';
+                        if (!($day>=1 && $day<=31)) {
+                            $errors[] = 'Inkorrekter Tag';
                         }
                     }
+                    
                     if ($month = '') {
                         $errors[] = 'Monat';
                     } else {
                         if (!($month> 0 && $month<13)) {
                             $errors[] = 'Inkorrekter Monat';
+                        } else {
+                              
                         }
                     }
-                    if ($day = '') {
-                        $errors[] = 'Tag';
+                    
+                    if ($year = '') {
+                        $errors[] = 'Jahr';
                     } else {
-                        if ($month = (02 || 2)) {
-                            if ($day>29) {
-                                $errors[] = 'Unmöglicher Tag';
+                        if (!($year>=2014 && $year<2030)) {
+                            $errors[] = 'Inkorrektes Jahr';
+                        } else {
+                            if ($year == 2016 || 2020 || 2024 || 2028) {
+                                if ($month = (02 || 2)) {
+                                    if ($day>29) {
+                                        $errors[] = 'Unmöglicher Tag';
+                                    }
+                                }
+                            } else {
+                                if ($month = (02 || 2)) {
+                                    if ($day>28) {
+                                        $errors[] = 'Unmöglicher Tag';
+                                    }
+                                }
                             }
                         }
                     }
+                    
                     if ($hour = '') {
                         $errors[] = 'Stunde';
-                    } 
+                    } else {
+                        if (!($hour>=0 && $hour<25)) {
+                            $errors[] = 'Inkorrekte Stunde';
+                        }
+                    }
+                    
                     if ($miutes = '') {
                         $errors[] = 'Minute';
+                    } else {
+                        if (!($minutes>=0 && $minutes<=60)) {
+                            $errors[] = 'Inkorrekte Minuten';    
+                        }
                     }
                 }
+                
                 
                 
                 /*if(isset($sent)){

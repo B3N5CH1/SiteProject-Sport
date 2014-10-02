@@ -42,6 +42,78 @@
                 </div>
             </nav>
             
+            <?php	
+
+                require_once('php/connect.php');
+
+                $table = "events";
+                $sent = $_POST['send'];
+                $title = htmlentities($_POST['Titel']);
+                $descript = htmlentities($_POST['Kurze_beschreibung']);
+                $sportart = htmlentities($_POST['sportart']);
+                $continent = htmlentities($_POST['continent']);
+                $reach = htmlentities($_POST['reichweite']);
+                $adress = htmlentities($_POST['Adresse']);
+                $zip = htmlentities($_POST['PLZ']);
+                $city = htmlentities($_POST['Stadt']);
+                $year = htmlentities($_POST['Jahr']);
+                $month = htmlentities($_POST['Monat']);
+                $day = htmlentities($_POST['Tag']);
+                $hour = htmlentities($_POST['Stunde']);
+                $minutes = htmlentities($_POST['Minute']);
+                $errors = array();
+                
+                if (isset($sent) {
+                    
+                    //variablen auf Inhalt prüfen und ggf. den Fehler (hier einfach der Feldname) in das Array $errors packen.
+                    if ($title == '') {
+                        $errors[] = 'Titel'
+                    }
+                    if ($descript = '') {
+                        $errors[] = 'Beschreibung';
+                    } 
+                    if ($year = '') {
+                        $errors[] = 'Jahr';
+                    } else {
+                        if ($year = !(> 2014 && <2030)){
+                            $errors[] = 'Inkorrektes Jahr';
+                        }
+                    }
+                    if ($month = '') {
+                        $errors[] = 'Monat';
+                    } else {
+                        if ($month = !(> 0 && <13)) {
+                            $errors[] = 'Inkorrekter Monat';
+                        }
+                    }
+                    if ($day = '') {
+                        $errors[] = 'Tag';
+                    } else {
+                        if ($month = 02 || 2) {
+                            if ($day = >29) {
+                                $errors[] = 'Unmöglicher Tag';
+                            }
+                        }
+                    }
+                    if ($hour = '') {
+                        $errors[] = 'Stunde';
+                    } 
+                    if ($miutes = '') {
+                        $errors[] = 'Minute';
+                    }
+                }
+                
+                
+                /*if(isset($sent)){
+                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
+                    VALUES 
+                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".$minutes."');";
+                    dbDo($sql);
+                }*/
+
+            ?>
+            
+            
             <br>
             <h2>Eigene Veranstaltung eintragen</h2>
             <p>
@@ -58,7 +130,6 @@
                         <input type="text" name="Titel" />
                     </td>
                 </tr>
-                <?php if(true) { ?>
                 <tr>
                     <td>
                         Kurze beschreibung
@@ -75,7 +146,6 @@
                         <input type="text" name="Webseite" value="<?php echo $_website; ?>"/>
                     </td>
                 </tr>
-                <?php } ?>
                 <tr>
                     <td>
                         Sportart
@@ -206,8 +276,9 @@
 			}
 			});
             </script>
+                
             <br>
-            <input type=submit name=send value="Send!">
+            <input type=submit name=send value="Send">
 			<input type="reset" />
             </form>
             

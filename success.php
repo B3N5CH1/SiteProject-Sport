@@ -45,34 +45,7 @@
                 </div>
             </nav>
             
-            <?php	
-
-                require_once('php/connect.php');
-
-                $table = "events";
-                $sent = $_POST['send'];
-                $title = $_POST['Titel'];
-                $descript = $_POST['Kurze_beschreibung'];
-                $sportart = $_POST['sportart'];
-                $continent = $_POST['continent'];
-                $reach = $_POST['reichweite'];
-                $adress = $_POST['Adresse'];
-                $zip = $_POST['PLZ'];
-                $city = $_POST['Stadt'];
-                $year = $_POST['Jahr'];
-                $month = $_POST['Monat'];
-                $day = $_POST['Tag'];
-                $hour = $_POST['Stunde'];
-                $minutes = $_POST['Minute'];
-
-                if(isset($sent)){
-                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
-                    VALUES 
-                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".$minutes."');";
-                    dbDo($sql);
-                }
-
-            ?>	
+            	
             
             <h1>
                 Deine Veranstaltung wurde eingetragen!

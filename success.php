@@ -31,7 +31,7 @@
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="submit.php">Veranstaltung eintragen</a></li>
+                                <li><a href="add.php">Veranstaltung eintragen</a></li>
                                 <li><a href="About.html">About</a></li>
                             </ul>
                             <!-- <form class="navbar-form navbar-left" role="search">

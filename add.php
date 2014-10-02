@@ -28,7 +28,7 @@
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="submit.php">Veranstaltung eintragen</a></li>
+                                <li><a href="add.php">Veranstaltung eintragen</a></li>
                                 <li><a href="About.html">About</a></li>
                             </ul>
                             <!-- <form class="navbar-form navbar-left" role="search">
@@ -58,6 +58,7 @@
                         <input type="text" name="Titel" />
                     </td>
                 </tr>
+                <?php if(true) { ?>
                 <tr>
                     <td>
                         Kurze beschreibung
@@ -71,9 +72,10 @@
                         Webseite des Veranstalters
                     </td>
                     <td>
-                        <input type="text" name="Webseite" value="www.example.com"/>
+                        <input type="text" name="Webseite" value="<?php echo $_website; ?>"/>
                     </td>
                 </tr>
+                <?php } ?>
                 <tr>
                     <td>
                         Sportart

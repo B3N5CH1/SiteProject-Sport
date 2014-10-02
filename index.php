@@ -41,7 +41,38 @@
             <br>
             <h1>Broadsport - Sportveranstaltungen in der Nähe</h1>
             <h2>News / Updates</h2>
-        
+            
+            <!-- Map 2.0 -->
+            
+            <div id="map" style="height: 400px"></div>
+            
+			<script src="leaflet/leaflet.js"></script>
+			
+            <script>
+            var map = L.map('map').setView([46.951083, 7.438639], 16);
+                
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+                }).addTo(map);
+				
+			
+			var new_event_marker;
+
+			map.on('click', function(e) {
+
+			if(typeof(new_event_marker)==='undefined')
+			{
+				new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
+				new_event_marker.addTo(map);        
+			}
+			else 
+			{
+				new_event_marker.setLatLng(e.latlng);         
+			}
+			});
+            </script>
+            
             <table border="1">
                 <?php 
                 
@@ -91,38 +122,6 @@
                 ?>
             
             </table>
-        
-		
-		<!-- Map 2.0 -->
-            <br><br>
-            <div id="map" style="height: 350px; width:350px; float:right"></div>
-            
-			<script src="leaflet/leaflet.js"></script>
-			
-            <script>
-            var map = L.map('map').setView([46.951083, 7.438639], 16);
-                
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                maxZoom: 18
-                }).addTo(map);
-				
-			
-			var new_event_marker;
-
-			map.on('click', function(e) {
-
-			if(typeof(new_event_marker)==='undefined')
-			{
-				new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
-				new_event_marker.addTo(map);        
-			}
-			else 
-			{
-				new_event_marker.setLatLng(e.latlng);         
-			}
-			});
-            </script>
       
             <br><br><br><br>
         </div>

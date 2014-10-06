@@ -37,6 +37,8 @@
                 $hour = htmlentities($_POST['Stunde']);
                 $minutes = htmlentities($_POST['Minute']);
                 $errors = array();
+                $leapYear = array(2016, 2020, 2024, 2028, 2032, 2036, 2040);
+                $longestMonth = array(01, 03, 05, 07, 08, 10, 12);
                 
                 if (isset($sent)) {
                     
@@ -49,56 +51,36 @@
                         $errors[] = 'Keine Beschreibung';
                     } 
                     
-                    if ($day == '') {
-                        $errors[] = 'Kein Tag';
-                    } else {
-                        if (!($day>=1 && $day<=31)) {
-                            $errors[] = 'Inkorrekter Tag';
-                        }
+                    if ($day == '' || (!($day>=1 && $day<=31))) {
+                        $errors[] = 'Kein Tag bzw. limitiert 01-31';
                     }
                     
-                    if ($month == '') {
+                    if (($year == '') || (!($year>=2014 && $year<=2040))) {
+                        $errors[] = 'Kein Jahr bzw. max. bei 2040';
+                    }
+                    
+                    if ($month == '' || (!($month>=1 && $month<=12))) {
                         $errors[] = 'Kein Monat';
                     } else {
-                        if (!($month>=1 && $month<=12)) {
-                            $errors[] = 'Inkorrekter Monat';
-                        } else {
-                            if (!($month == 01 || 03 || 05 || 07 || 08 || 10 || 12)) {
-                                if ($day == 31){
-                                    $errors[] = 'Unmöglicher Tag';
+                        if (!(in_array($month, $longestMonth))) {
+                           if ($month == 02) {
+                                if  ((in_array($year, $possibleYear)) && ($day > 29)) {
+                                    $errors[] = 'Unmöglicher Tag => Das eingegebene Jahr ist ein Schaltjahr (max. 29 Tage)';
+                                } else {
+                                    if ((!(in_array($year, $possibleYear))) && ($day > 28)) {
+                                        $errors[] = 'Unmöglicher Tag => Das eingegebene Jahr ist kein Schaltjahr';
+                                    }
                                 }
+                            }
+                        } else {
+                            if ($day > 31) {
+                                $errors[] = 'Unmöglicher Tag';
                             }
                         }
                     }
                     
-                    if ($year == '') {
-                        $errors[] = 'Kein Jahr';
-                    } else {
-                        if (!($year>=2014 && $year<=2032)) {
-                            $errors[] = 'Inkorrektes Jahr';
-                        } else {
-                            if ($year == 2016 || 2020 || 2024 || 2028 || 2032) {
-                                if ($month == (02 || 2)) {
-                                    if ($day>29) {
-                                        $errors[] = 'Unmöglicher Tag';
-                                    }
-                                }
-                            } else {
-                                if ($month == (02 || 2)) {
-                                    if ($day>28) {
-                                        $errors[] = 'Unmöglicher Tag';
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    if ($hour == '') {
-                        $errors[] = 'Keine Stunde';
-                    } else {
-                        if (!($hour>=0 && $hour<=24)) {
-                            $errors[] = 'Inkorrekte Stunde';
-                        }
+                    if ($hour == '' || (!($hour>=0 && $hour<=24))) {
+                        $errors[] = 'Keine Stunde, bzw. 00-24';
                     }
                     
                     if ($minutes == '') {
@@ -108,6 +90,7 @@
                             $errors[] = 'Inkorrekte Minuten';    
                         }
                     }
+                    
                     if (count($errors)==0) {
                         $sql = "INSERT INTO `".$table."` 
                             (`id` ,`title`, `description` ,
@@ -127,16 +110,6 @@
                         echo '<br>Folgende Fehler traten auf:<br>' . implode('<br>', $errors);
                     }
                 }
-                
-                
-                
-                
-                /*if(isset($sent)){
-                    $sql = "INSERT INTO `".$table."` (`id` ,`title`, `description` , `sportart`, `continent`, `reach`, `adress`, `zip`,                         `city`, `jahr`, `monat`, `tag`, `stunde`, `minute`) 
-                    VALUES 
-                    ('', '".$title."', '".$descript."', '".$sportart."', '".$continent."', '".$reach."', '".$adress."', '".$zip."',                             '".$city."', '".$year."', '".$month."', '".$day."', '".$hour."', '".$minutes."');";
-                    dbDo($sql);
-                }*/
 
             ?>
             

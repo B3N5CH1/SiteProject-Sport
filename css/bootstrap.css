@@ -6207,9 +6207,3 @@ body {
     padding-top: 35px; 
     background-color: lightgrey;
 }
-
-@media(max-width: 15cm) {
-    .container {
-        width: 95%;
-    }
-}

@@ -36,6 +36,8 @@
                 $day = htmlentities($_POST['Tag']);
                 $hour = htmlentities($_POST['Stunde']);
                 $minutes = htmlentities($_POST['Minute']);
+                $latitude = htmlentities($_POST['lat']);
+                $longitude = htmlentities($_POST['lng']);
                 $errors = array();
                 $leapYear = array(2016, 2020, 2024, 2028, 2032, 2036, 2040);
                 $longestMonth = array(01, 03, 05, 07, 08, 10, 12);
@@ -52,7 +54,7 @@
                     } 
                     
                     if ($day == '' || (!($day>=1 && $day<=31))) {
-                        $errors[] = 'Kein Tag bzw. limitiert 01-31';
+                        $errors[] = 'Kein Tag bzw. 01-31';
                     }
                     
                     if (($year == '') || (!($year>=2014 && $year<=2040))) {
@@ -60,7 +62,7 @@
                     }
                     
                     if ($month == '' || (!($month>=1 && $month<=12))) {
-                        $errors[] = 'Kein Monat';
+                        $errors[] = 'Kein Monat, bzw. 01-12';
                     } else {
                         if (!(in_array($month, $longestMonth))) {
                            if ($month == 02) {
@@ -83,12 +85,12 @@
                         $errors[] = 'Keine Stunde, bzw. 00-24';
                     }
                     
-                    if ($minutes == '') {
-                        $errors[] = 'Keine Minute';
-                    } else {
-                        if (!($minutes>=0 && $minutes<60)) {
-                            $errors[] = 'Inkorrekte Minuten';    
-                        }
+                    if ($minutes == '' || (!($minutes>=0 && $minutes<60))) {
+                        $errors[] = 'Keine Minute, bzw. 00-60';
+                    }
+                    
+                    if ($latitude == '') {
+                        $errors[] = 'Kein Ort ausgewählt';
                     }
                     
                     if (count($errors)==0) {
@@ -97,13 +99,13 @@
                             `sportart`, `continent`, `reach`,
                             `adress`, `zip`, `city`,
                             `jahr`, `monat`, `tag`,
-                            `stunde`, `minute`) 
+                            `stunde`, `minute`, `lat`, `lng`) 
                         VALUES 
                             ('', '".$title."', '".$descript."',
                             '".$sportart."', '".$continent."', '".$reach."',
                             '".$adress."', '".$zip."', '".$city."',
                             '".$year."', '".$month."', '".$day."',
-                            '".$hour."', '".$minutes."');";
+                            '".$hour."', '".$minutes."', '".$latitude."', '".$longitude."');";
                         dbDo($sql);
                         header("Location: /success.php");
                     } else {
@@ -199,6 +201,7 @@
                             <option value="Speed Skating">Eisschnelllauf</option>
                             <option value="Baseball">Baseball</option>
                             <option value="Cricket">Cricket</option>
+                            <option value="eSport">eSport</option>
                             <option value="Andere">Anderes</option>
                         </select>
                     </td>
@@ -232,30 +235,6 @@
                 </tr>
                 <tr>
                     <td>
-                        Adresse
-                    </td>
-                    <td>
-                        <input type="text" name="Adresse" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        PLZ
-                    </td>
-                    <td>
-                        <input type="text" name="PLZ" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Stadt
-                    </td>
-                    <td>
-                        <input type="text" name="Stadt" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         Datum (JJJJ-MM-TT)*
                     </td>
                     <td>
@@ -268,7 +247,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Uhrzeit (SS-HH)*
+                        Uhrzeit (SS-MM)*
                     </td>
                     <td>
                         <input type="text" name="Stunde" maxlength="2" size="1" value="<?php echo $hour ?>"/>
@@ -276,15 +255,24 @@
                         <input type="text" name="Minute" maxlength="2" size="1" value="<?php echo $minutes ?>"/>
                     </td>
                 </tr>
-				
-				
             </table>	         
-            
+            <h4 style="text-align:center">Klicke auf die Karte, um den Ort der Veranstaltung anzugeben.*</h4>
             <!-- Map 2.0 -->
-            <div id="map" style="height: 250px;"></div>
-            <script src="leaflet/leaflet.js"></script>
+            <div id="map" style="height: 300px;width: 66%;margin:0 auto;"></div>
+            <br>
+            <input type=submit name=send value="Send">
+			<input type="reset" />
+            <input type="text" name="lat" id="lat" hidden="true">
+            <input type="text" name="lng" id="lng" hidden="true">
+            
+            </form>
+            
+            
+            <br><br><br><br>
+        </div>
+         <script src="leaflet/leaflet.js"></script>
             <script>
-            var map = L.map('map').setView([46.951083, 7.438639], 16);
+            var map = L.map('map').setView([46.801111, 8.226667], 7);
                 
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -295,26 +283,21 @@
 			var new_event_marker;
 
 			map.on('click', function(e) {
-
-			if(typeof(new_event_marker)==='undefined')
-			{
-				new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
-				new_event_marker.addTo(map);        
-			}
-			else 
-			{
-				new_event_marker.setLatLng(e.latlng);         
-			}
+                if(typeof(new_event_marker)==='undefined')
+                {
+                    new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
+                    new_event_marker.addTo(map);        
+                }
+                else 
+                {
+                    new_event_marker.setLatLng(e.latlng);         
+                }
+                console.log(e.latlng);
+                var lat_input = document.getElementById("lat");
+                var lng_input = document.getElementById("lng");
+                lat_input.value = e.latlng.lat;
+                lng_input.value = e.latlng.lng;
 			});
             </script>
-                
-            <br>
-            <input type=submit name=send value="Send">
-			<input type="reset" />
-            </form>
-            
-            
-            <br><br><br><br>
-        </div>
     </body>
 </html>

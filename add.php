@@ -93,17 +93,17 @@
                     
                     if (count($errors)==0) {
                         $sql = "INSERT INTO `".$table."` 
-                            (`id` ,`title`, `description` ,
+                            (`title`, `description` ,
                             `sportart`, `continent`, `reach`,
-                            `jahr`, `monat`, `tag`, `webiste`,
+                            `jahr`, `monat`, `tag`, `website`,
                             `stunde`, `minute`, `lat`, `lng`) 
                         VALUES 
-                            ('', '".$title."', '".$descript."',
+                            ('".$title."', '".$descript."',
                             '".$sportart."', '".$continent."', '".$reach."',
                             '".$year."', '".$month."', '".$day."', '".$website."',
                             '".$hour."', '".$minutes."', '".$latitude."', '".$longitude."');";
                         dbDo($sql);
-                        header("Location: /success.php");
+                        //header("Location: /success.php");
                     } else {
                         echo '<br>Folgende Fehler traten auf:<br>' . implode('<br>', $errors);
                     }
@@ -173,7 +173,7 @@
                             Webseite des Veranstalters
                         </td>
                         <td>
-                            <input type="text" name="Webseite" value="<?php echo $website; ?>"/>
+                            <input type="text" name="Webseite" value="<?php echo $website ?>"/>
                         </td>
                     </tr>
                     <tr>

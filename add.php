@@ -35,6 +35,7 @@
                 $minutes = htmlentities($_POST['Minute']);
                 $latitude = htmlentities($_POST['lat']);
                 $longitude = htmlentities($_POST['lng']);
+                $website = htmlentities($_POST['Webseite']);
                 $errors = array();
                 $leapYear = array(2016, 2020, 2024, 2028, 2032, 2036, 2040);
                 $longestMonth = array(01, 03, 05, 07, 08, 10, 12);
@@ -94,12 +95,12 @@
                         $sql = "INSERT INTO `".$table."` 
                             (`id` ,`title`, `description` ,
                             `sportart`, `continent`, `reach`,
-                            `jahr`, `monat`, `tag`,
+                            `jahr`, `monat`, `tag`, `webiste`,
                             `stunde`, `minute`, `lat`, `lng`) 
                         VALUES 
                             ('', '".$title."', '".$descript."',
                             '".$sportart."', '".$continent."', '".$reach."',
-                            '".$year."', '".$month."', '".$day."',
+                            '".$year."', '".$month."', '".$day."', '".$website."',
                             '".$hour."', '".$minutes."', '".$latitude."', '".$longitude."');";
                         dbDo($sql);
                         header("Location: /success.php");
@@ -172,7 +173,7 @@
                             Webseite des Veranstalters
                         </td>
                         <td>
-                            <input type="text" name="Webseite" value="<?php echo $_website; ?>"/>
+                            <input type="text" name="Webseite" value="<?php echo $website; ?>"/>
                         </td>
                     </tr>
                     <tr>

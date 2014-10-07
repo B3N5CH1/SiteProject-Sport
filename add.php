@@ -94,13 +94,11 @@
                         $sql = "INSERT INTO `".$table."` 
                             (`id` ,`title`, `description` ,
                             `sportart`, `continent`, `reach`,
-                            `adress`, `zip`, `city`,
                             `jahr`, `monat`, `tag`,
                             `stunde`, `minute`, `lat`, `lng`) 
                         VALUES 
                             ('', '".$title."', '".$descript."',
                             '".$sportart."', '".$continent."', '".$reach."',
-                            '".$adress."', '".$zip."', '".$city."',
                             '".$year."', '".$month."', '".$day."',
                             '".$hour."', '".$minutes."', '".$latitude."', '".$longitude."');";
                         dbDo($sql);

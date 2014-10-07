@@ -30,7 +30,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="add.php">Veranstaltung eintragen</a></li>
 								<li><a href="search.php">Suche</a></li>
-                                <li><a href="About.html">About</a></li>
+                                <li><a href="about.html">About</a></li>
                             </ul>
                             <!-- <form class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
@@ -44,7 +44,7 @@
             </nav>
             
             	
-            
+            <br>
             <h1>
                 Deine Veranstaltung wurde eingetragen!
             </h1>

@@ -25,7 +25,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="add.php">Veranstaltung eintragen</a></li>
 								<li><a href="search.php">Suche</a></li>
-                                <li><a href="About.html">About</a></li>
+                                <li><a href="about.html">About</a></li>
                             </ul>
                             <!-- <form class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
@@ -43,6 +43,23 @@
             <h2>News / Updates</h2>
             
             <!-- Map 2.0 -->
+            <?php
+                require_once('php/connect.php');
+                
+                $myquery = "
+                    SELECT  `lat`, `lng` FROM  `events`
+                    WHERE `lat` <> 0
+                ";
+                $query = mysql_query($myquery);
+    
+                if ( ! $query ) {
+                    echo mysql_error();
+                    die;
+                }
+    
+                $data = array();
+                
+            ?>
             
             <div id="map" style="height: 400px"></div>
             
@@ -56,7 +73,26 @@
                 maxZoom: 18
                 }).addTo(map);
 				
-			
+            <?php
+                  echo "var planelatlong = [";
+    
+                for ($x = 0; $x < mysql_num_rows($query); $x++) {
+                    $data[] = mysql_fetch_assoc($query);
+                    echo "[",$data[$x]['lat'],",",$data[$x]['lng'],"]";
+                    if ($x <= (mysql_num_rows($query)-2) ) {
+                        echo ",";
+                    }
+                }
+
+                echo "];";
+            ?>
+                
+            for (var i = 0; i < planelatlong.length; i++) {
+			marker = new L.marker([planelatlong[i][0],planelatlong[i][1]])
+				.addTo(map);
+            }
+            
+			/*
 			var new_event_marker;
 
 			map.on('click', function(e) {
@@ -70,7 +106,7 @@
 			{
 				new_event_marker.setLatLng(e.latlng);         
 			}
-			});
+			}); */
             </script>
             
             <table border="1">
@@ -108,16 +144,18 @@
                 /*
                 $table = "events";
                 $sent = $_POST['send'];
-                $title = $_POST['Titel'];
-                $descript = $_POST['Kurze_beschreibung'];
-                $sportart = $_POST['sportart'];
-                $continent = $_POST['continent'];
-                $reach = $_POST['reichweite'];
-                $adress = $_POST['Adresse'];
-                $zip = $_POST['PLZ'];
-                $city = $_POST['Stadt'];
-                $dte = $_POST['Datum'];
-                $time = $_POST['Uhrzeit'];
+                $title = htmlentities($_POST['Titel']);
+                $descript = htmlentities($_POST['Beschreibung']);
+                $sportart = htmlentities($_POST['sportart']);
+                $continent = htmlentities($_POST['continent']);
+                $reach = htmlentities($_POST['reichweite']);
+                $year = htmlentities($_POST['Jahr']);
+                $month = htmlentities($_POST['Monat']);
+                $day = htmlentities($_POST['Tag']);
+                $hour = htmlentities($_POST['Stunde']);
+                $minutes = htmlentities($_POST['Minute']);
+                $latitude = htmlentities($_POST['lat']);
+                $longitude = htmlentities($_POST['lng']);
                 */
                 ?>
             

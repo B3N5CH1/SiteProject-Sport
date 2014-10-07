@@ -6,6 +6,8 @@ $Passwd = "PHArU6yU";
 $DBName = "evts";     
 
 $Connect = mysql_connect($Host, $User, $Passwd, $DBName);
+$server = mysql_connect($host, $username, $password);
+$connection = mysql_select_db($database, $server);
 
 function dbDo($command, $message="") {
 	$result=@mysql_query($command);

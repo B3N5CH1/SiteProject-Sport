@@ -28,9 +28,6 @@
                 $sportart = htmlentities($_POST['sportart']);
                 $continent = htmlentities($_POST['continent']);
                 $reach = htmlentities($_POST['reichweite']);
-                $adress = htmlentities($_POST['Adresse']);
-                $zip = htmlentities($_POST['PLZ']);
-                $city = htmlentities($_POST['Stadt']);
                 $year = htmlentities($_POST['Jahr']);
                 $month = htmlentities($_POST['Monat']);
                 $day = htmlentities($_POST['Tag']);
@@ -132,7 +129,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="add.php">Veranstaltung eintragen</a></li>
 								<li><a href="search.php">Suche</a></li>
-                                <li><a href="About.html">About</a></li>
+                                <li><a href="about.html">About</a></li>
                             </ul>
                             <!-- <form class="navbar-form navbar-left" role="search">
                                 <div class="form-group">
@@ -148,148 +145,149 @@
             
             
             <br>
-            <h2>Eigene Veranstaltung eintragen</h2>
+            <h2>
+                Eigene Veranstaltung eintragen
+            </h2>
             <p>
-            Hier kannst Du eine neue Veranstaltung eintragen.
+                Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
             <form method="POST" action="add.php">
-            <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
-				
-                <tr>
-                    <td>
-                        Titel*
-                    </td>
-                    <td>
-                        <input type="text" name="Titel" value="<?php echo $title ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Kurze beschreibung*
-                    </td>
-                    <td>
-                        <input type="text" name="Beschreibung" value="<?php echo $descript ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Webseite des Veranstalters
-                    </td>
-                    <td>
-                        <input type="text" name="Webseite" value="<?php echo $_website; ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Sportart
-                    </td>
-                    <td>
-                        <select name="sportart">
-                            <option value="Fussball">Fusball</option>
-                            <option value="Basketball">Basketball</option>
-                            <option value="Handball">Handball</option>
-                            <option value="Volleyball">Volleyball</option>
-                            <option value="Tennis">Tennis</option>
-                            <option value="Rugby">Rugby</option>
-                            <option value="Tischtennis">Tischtennis</option>
-                            <option value="Squash">Squash</option>
-                            <option value="Eis Hockey">Eis Hockey</option>
-                            <option value="Rennrodeln">Rennrodeln</option>
-                            <option value="Skeleton">Skeleton</option>
-                            <option value="Alpine Skiing">Alpine Skiing</option>
-                            <option value="Freestyle Skiing">Freestyle Skiing</option>
-                            <option value="Speed Skating">Eisschnelllauf</option>
-                            <option value="Baseball">Baseball</option>
-                            <option value="Cricket">Cricket</option>
-                            <option value="eSport">eSport</option>
-                            <option value="Andere">Anderes</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Kontinent
-                    </td>
-                    <td>
-                        <select name="continent">
-                            <option value="Europa">Europa</option>
-                            <option value="America">Amerika</option>
-                            <option value="Asien">Asien</option>
-                            <option value="Afrika">Afrika</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Reichweite
-                    </td>
-                    <td>
-                        <select name="reichweite">
-                            <option value="Lokal">Lokal</option>
-                            <option value="National">National</option>
-                            <option value="Kontinental">Kontinental</option>
-                            <option value="Weltweit">Weltweit</option>
-                            <option value="Olympisch">Olympisch</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Datum (JJJJ-MM-TT)*
-                    </td>
-                    <td>
-                        <input type="text" name="Jahr" maxlength="4" size="3" value="<?php echo $year ?>"/>
-                        &nbsp;
-                        <input type="text" name="Monat" maxlength="2" size="1" value="<?php echo $month ?>"/>
-                        &nbsp;
-                        <input type="text" name="Tag" maxlength="2" size="1" value="<?php echo $day ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Uhrzeit (SS-MM)*
-                    </td>
-                    <td>
-                        <input type="text" name="Stunde" maxlength="2" size="1" value="<?php echo $hour ?>"/>
-                        &nbsp;
-                        <input type="text" name="Minute" maxlength="2" size="1" value="<?php echo $minutes ?>"/>
-                    </td>
-                </tr>
-            </table>	         
-            <h4 style="text-align:center">Klicke auf die Karte, um den Ort der Veranstaltung anzugeben.*</h4>
-            <!-- Map 2.0 -->
-            <div id="map" style="height: 300px;width: 66%;margin:0 auto;"></div>
-            <br>
-            <input type=submit name=send value="Send">
-			<input type="reset" />
-            <input type="text" name="lat" id="lat" hidden="true">
-            <input type="text" name="lng" id="lng" hidden="true">
+                <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
+				    <tr>
+                        <td>
+                            Titel*
+                        </td>
+                        <td>
+                            <input type="text" name="Titel" value="<?php echo $title ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Kurze beschreibung*
+                        </td>
+                        <td>
+                            <input type="text" name="Beschreibung" value="<?php echo $descript ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Webseite des Veranstalters
+                        </td>
+                        <td>
+                            <input type="text" name="Webseite" value="<?php echo $_website; ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Sportart
+                        </td>
+                        <td>
+                            <select name="sportart">
+                                <option value="Fussball">Fusball</option>
+                                <option value="Basketball">Basketball</option>
+                                <option value="Handball">Handball</option>
+                                <option value="Volleyball">Volleyball</option>
+                                <option value="Tennis">Tennis</option>
+                                <option value="Rugby">Rugby</option>
+                                <option value="Tischtennis">Tischtennis</option>
+                                <option value="Squash">Squash</option>
+                                <option value="Eis Hockey">Eis Hockey</option>
+                                <option value="Rennrodeln">Rennrodeln</option>
+                                <option value="Skeleton">Skeleton</option>
+                                <option value="Alpine Skiing">Alpine Skiing</option>
+                                <option value="Freestyle Skiing">Freestyle Skiing</option>
+                                <option value="Speed Skating">Eisschnelllauf</option>
+                                <option value="Baseball">Baseball</option>
+                                <option value="Cricket">Cricket</option>
+                                <option value="eSport">eSport</option>
+                                <option value="Andere">Anderes</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Kontinent
+                        </td>
+                        <td>
+                            <select name="continent">
+                                <option value="Europa">Europa</option>
+                                <option value="America">Amerika</option>
+                                <option value="Asien">Asien</option>
+                                <option value="Afrika">Afrika</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Reichweite
+                        </td>
+                        <td>
+                            <select name="reichweite">
+                                <option value="Lokal">Lokal</option>
+                                <option value="National">National</option>
+                                <option value="Kontinental">Kontinental</option>
+                                <option value="Weltweit">Weltweit</option>
+                                <option value="Olympisch">Olympisch</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Datum (JJJJ-MM-TT)*
+                        </td>
+                        <td>
+                            <input type="text" name="Jahr" maxlength="4" size="3" value="<?php echo $year ?>"/>
+                            &nbsp;
+                            <input type="text" name="Monat" maxlength="2" size="1" value="<?php echo $month ?>"/>
+                            &nbsp;
+                            <input type="text" name="Tag" maxlength="2" size="1" value="<?php echo $day ?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Uhrzeit (SS-MM)*
+                        </td>
+                        <td>
+                            <input type="text" name="Stunde" maxlength="2" size="1" value="<?php echo $hour ?>"/>
+                            &nbsp;
+                            <input type="text" name="Minute" maxlength="2" size="1" value="<?php echo $minutes ?>"/>
+                        </td>
+                    </tr>
+                </table>	         
+                <h4 style="text-align:center">Klicke auf die Karte, um den Ort der Veranstaltung anzugeben.*</h4>
             
+                <!-- Map 2.0 -->
+                <div id="map" style="height: 300px;width: 66%;margin:0 auto;"></div>
+                <br>
+                <input type="text" name="lat" id="lat" hidden="true">
+                <input type="text" name="lng" id="lng" hidden="true">
+                <div style="float:right">
+                    <input type=submit name=send value="Abschicken">
+                    <input type="reset" value="Zrücksetzen"/>
+                </div>
             </form>
             
             
             <br><br><br><br>
         </div>
-         <script src="leaflet/leaflet.js"></script>
-            <script>
+        
+        <script src="leaflet/leaflet.js"></script>
+        <script>
             var map = L.map('map').setView([46.801111, 8.226667], 7);
                 
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
-                }).addTo(map);
+            }).addTo(map);
 				
 			
 			var new_event_marker;
 
 			map.on('click', function(e) {
-                if(typeof(new_event_marker)==='undefined')
-                {
+                if(typeof(new_event_marker)==='undefined') {
                     new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
                     new_event_marker.addTo(map);        
-                }
-                else 
-                {
+                } else {
                     new_event_marker.setLatLng(e.latlng);         
                 }
                 console.log(e.latlng);
@@ -298,6 +296,6 @@
                 lat_input.value = e.latlng.lat;
                 lng_input.value = e.latlng.lng;
 			});
-            </script>
+        </script>
     </body>
 </html>

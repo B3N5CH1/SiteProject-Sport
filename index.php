@@ -26,12 +26,6 @@
                                 <li><a href="add.php">Veranstaltung eintragen</a></li>
                                 <li><a href="about.html">About</a></li>
                             </ul>
-                            <!-- <form class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form> -->
                         </div>
                     </div>
                 </div>
@@ -90,75 +84,7 @@
 			marker = new L.marker([planelatlong[i][0],planelatlong[i][1]])
 				.addTo(map);
             }
-            
-			/*
-			var new_event_marker;
-
-			map.on('click', function(e) {
-
-			if(typeof(new_event_marker)==='undefined')
-			{
-				new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
-				new_event_marker.addTo(map);        
-			}
-			else 
-			{
-				new_event_marker.setLatLng(e.latlng);         
-			}
-			}); */
             </script>
-            
-            <table border="1">
-                <?php 
-                
-                //require_once('php/connect.php');
-                
-                $Connect = mysqli_connect("localhost", "bsport", "PHArU6yU", "evts");
-
-                $sql = "SELECT * FROM events";
- 
-                $db_erg = mysqli_query( $Connect, $sql );
-                if ( ! $db_erg )
-                {
-                    die('Ungültige Abfrage: ' . mysqli_error($Connect));
-                }
- 
-                
-                    while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
-                    {
-                        echo "<h3>". $zeile['title'] . " findet am ". $zeile['jahr'] . ".". $zeile['monat'] . ".". $zeile['tag'] . ". um ". $zeile['stunde'] . ":". $zeile['minute'] . " statt.</h3>";
-                        /*echo '<table border="1">';
-                        echo "<tr>";
-                        echo "<td>". $zeile['id'] . "</td>";
-                        echo "<td>". $zeile['nachname'] . "</td>";
-                        echo "<td>". $zeile['vorname'] . "</td>";
-                        echo "<td>". $zeile['akuerzel'] . "</td>";
-                        echo "<td>". $zeile['strasse'] . "</td>";
-                        echo "<td>". $zeile['plz'] . "</td>";
-                        echo "<td>". $zeile['telefon'] . "</td>";
-                        echo "</tr>";
-                        echo "</table>";*/
-                    }
-                
-                /*
-                $table = "events";
-                $sent = $_POST['send'];
-                $title = htmlentities($_POST['Titel']);
-                $descript = htmlentities($_POST['Beschreibung']);
-                $sportart = htmlentities($_POST['sportart']);
-                $continent = htmlentities($_POST['continent']);
-                $reach = htmlentities($_POST['reichweite']);
-                $year = htmlentities($_POST['Jahr']);
-                $month = htmlentities($_POST['Monat']);
-                $day = htmlentities($_POST['Tag']);
-                $hour = htmlentities($_POST['Stunde']);
-                $minutes = htmlentities($_POST['Minute']);
-                $latitude = htmlentities($_POST['lat']);
-                $longitude = htmlentities($_POST['lng']);
-                */
-                ?>
-            
-            </table>
       
             <br><br><br><br>
         </div>

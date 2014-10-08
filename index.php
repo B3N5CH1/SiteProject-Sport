@@ -26,12 +26,6 @@
                                 <li><a href="add.php">Veranstaltung eintragen</a></li>
                                 <li><a href="about.html">About</a></li>
                             </ul>
-                            <!-- <form class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form> -->
                         </div>
                     </div>
                 </div>
@@ -41,7 +35,116 @@
             <h1>Broadsport - Sportveranstaltungen in der Nähe</h1>
             <h2>News / Updates</h2>
             
-            <!-- Map 2.0 -->
+			
+			
+			<!-- Search table -->
+			<table border="1">
+			<form method="POST">
+            <table  style="background-color:silver;width:200px" class="table table-hover" border="2" cellpadding="2">
+                <tr>
+                    <td>Sportart</td>
+                    <td>
+                        <select name="sportart">
+                            <option value="Fussball"> Fussball</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Handball">Handball</option>
+                            <option value="Volleyball">Volleyball</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Rugby">Rugby</option>
+                            <option value="Table tennis">Table tennis</option>
+                            <option value="Squash">Squash</option>
+                            <option value="Ice Hockey">Ice Hockey</option>
+                            <option value="Luge">Luge</option>
+                            <option value="Skeleton">Skeleton</option>
+                            <option value="Alpine Skiing">Alpine Skiing</option>
+                            <option value="Freestyle Skiing">Freestyle Skiing</option>
+                            <option value="Speed Skating">Speed Skating</option>
+                            <option value="Baseball">Baseball</option>
+                            <option value="Cricket">Cricket</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Region</td>
+					<td>
+						<select name="region">
+							<option value="Europa">Europa</option>
+							<option value="America">America</option>
+							<option value="Asien">Asien</option>
+							<option value="Afrika">Afrika</option>
+						</select>
+					</td>
+				</tr>
+                <tr>
+                    <td>Stichwort</td>
+                    <td><input type="text" name="keyword" /></td>
+                </tr>
+				<tr>
+                    <td>Date from</td>
+                    <td><input type="text" name="datefrom" /></td>
+                </tr>
+				<tr>
+                    <td>Date to</td>
+                    <td><input type="text" name="dateto" /></td>
+                </tr>
+				
+            </table>	
+				<input type=submit name=send value="Suchen">
+				<input type="reset" />
+            </form>
+			
+            <br><br>
+			
+			<?php	
+                require_once('php/connect.php');
+
+				//Getting updated variables
+				$table = "events";
+				$sent = $_POST['send'];
+				$keyword = $_POST['keyword'];
+				$fromYear = $_POST['fromYear'];
+				$fromMonth = $_POST['fromMonth'];
+				$fromDay = $_POST['fromDay'];
+				$toYear = $_POST['toYear'];
+				$toMonth = $_POST['toMonth'];
+				$toDay = $_POST['toDay'];
+                $region = $_POST['region'];
+                $sportart = $_POST['sportart'];
+			
+			    //If somebody has pressed a "send" button
+				if(isset($sent)){
+					//Search on Sportart
+					$sql = "`".$table."` WHERE ";
+					if(isset($sportart)){
+						 $sql = $sql." sportart = '".$sportart."'";
+					}
+				
+					//Search on Region
+					if(isset($region)){
+						$sql = $sql." AND continent = '".$region."'";
+					}
+				
+					//Search on Keyword
+					if(isset($keyword) && $keyword != ''){
+						$sql = $sql." AND title LIKE '%".$keyword."%';";
+					}
+				
+					//Still in development
+					
+					
+					
+					/*
+					//Search on Date
+					if(isset($datefrom) && isset($dateto)){
+						$sql = $sql." AND date BETWEEN '".$fromYear."-".$fromMonth."-".$fromDay."' AND '".$toYear."-".$toMonthT."-".$toDay."';";
+					} */
+					dbList($sql);
+				}
+            ?>
+			
+			
+			
+           
             <?php
                 require_once('php/connect.php');
                 
@@ -60,12 +163,13 @@
                 
             ?>
             
+			 <!-- Map 2.0 -->
             <div id="map" style="height: 400px"></div>
             
 			<script src="leaflet/leaflet.js"></script>
 			
             <script>
-            var map = L.map('map').setView([46.951083, 7.438639], 16);
+            var map = L.map('map').setView([46.951083, 7.438639], 8);
                 
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -90,24 +194,9 @@
 			marker = new L.marker([planelatlong[i][0],planelatlong[i][1]])
 				.addTo(map);
             }
-            
-			/*
-			var new_event_marker;
-
-			map.on('click', function(e) {
-
-			if(typeof(new_event_marker)==='undefined')
-			{
-				new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
-				new_event_marker.addTo(map);        
-			}
-			else 
-			{
-				new_event_marker.setLatLng(e.latlng);         
-			}
-			}); */
             </script>
             
+			<!-- List of all events -->
             <table border="1">
                 <?php 
                 
@@ -122,44 +211,24 @@
                 {
                     die('Ungültige Abfrage: ' . mysqli_error($Connect));
                 }
- 
-                
                     while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
                     {
                         echo "<h3>". $zeile['title'] . " findet am ". $zeile['jahr'] . ".". $zeile['monat'] . ".". $zeile['tag'] . ". um ". $zeile['stunde'] . ":". $zeile['minute'] . " statt.</h3>";
-                        /*echo '<table border="1">';
-                        echo "<tr>";
-                        echo "<td>". $zeile['id'] . "</td>";
-                        echo "<td>". $zeile['nachname'] . "</td>";
-                        echo "<td>". $zeile['vorname'] . "</td>";
-                        echo "<td>". $zeile['akuerzel'] . "</td>";
-                        echo "<td>". $zeile['strasse'] . "</td>";
-                        echo "<td>". $zeile['plz'] . "</td>";
-                        echo "<td>". $zeile['telefon'] . "</td>";
-                        echo "</tr>";
-                        echo "</table>";*/
                     }
-                
-                /*
-                $table = "events";
-                $sent = $_POST['send'];
-                $title = htmlentities($_POST['Titel']);
-                $descript = htmlentities($_POST['Beschreibung']);
-                $sportart = htmlentities($_POST['sportart']);
-                $continent = htmlentities($_POST['continent']);
-                $reach = htmlentities($_POST['reichweite']);
-                $year = htmlentities($_POST['Jahr']);
-                $month = htmlentities($_POST['Monat']);
-                $day = htmlentities($_POST['Tag']);
-                $hour = htmlentities($_POST['Stunde']);
-                $minutes = htmlentities($_POST['Minute']);
-                $latitude = htmlentities($_POST['lat']);
-                $longitude = htmlentities($_POST['lng']);
-                */
+					
+					//Showing an event on map
+					
+					
+					
+					//in development
+					
+					
+					
                 ?>
             
             </table>
-      
+			
+			
             <br><br><br><br>
         </div>
 		</div>

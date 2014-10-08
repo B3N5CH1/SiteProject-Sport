@@ -261,7 +261,7 @@
                 <input type="text" name="lng" id="lng" hidden="true">
                 <div style="float:right">
                     <input type=submit name=send value="Abschicken">
-                    <input type="reset" value="Zurücksetzen"/>
+                    <input type="reset" value="Zrücksetzen"/>
                 </div>
             </form>
             

@@ -1,6 +1,5 @@
 <?php
 
-//User credentials
 $Host = "localhost"; 
 $User = "bsport";      
 $Passwd = "PHArU6yU";    
@@ -8,7 +7,6 @@ $DBName = "evts";
 
 $Connect = mysql_connect($Host, $User, $Passwd, $DBName);
 
-//Makes a query to a DB
 function dbDo($command, $message="") {
 	$result=@mysql_query($command);
 	if($message) echo '<br>'.$message;
@@ -20,7 +18,6 @@ function dbDo($command, $message="") {
 	return $result;
 }
 
-//Lists database contains
 function dbList($param="") {
 	if($param) {
 		$nrows=@mysql_num_rows($param);
@@ -43,6 +40,11 @@ function dbList($param="") {
 		echo "<br>";
 	}
 	return result;
+}
+
+function dbDate($date) {
+	setlocale(LC_ALL,'ru_RU.CP1251','ru_RU','rus');
+	return strftime('%d %B %Y ã.',$date);
 }
 
 dbDo("SET character_set_client='cp1251'");

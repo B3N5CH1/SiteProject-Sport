@@ -64,10 +64,10 @@
                     } else {
                         if (!(in_array($month, $longestMonth))) {
                            if ($month == 02) {
-                                if  ((in_array($year, $possibleYear)) && ($day > 29)) {
+                                if  ((in_array($year, $leapYear)) && ($day > 29)) {
                                     $errors[] = 'Unmöglicher Tag => Das eingegebene Jahr ist ein Schaltjahr (max. 29 Tage)';
                                 } else {
-                                    if ((!(in_array($year, $possibleYear))) && ($day > 28)) {
+                                    if ((!(in_array($year, $leapYear))) && ($day > 28)) {
                                         $errors[] = 'Unmöglicher Tag => Das eingegebene Jahr ist kein Schaltjahr';
                                     }
                                 }

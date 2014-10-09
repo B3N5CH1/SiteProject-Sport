@@ -45,22 +45,24 @@
                     <td>Sportart</td>
                     <td>
                         <select name="sportart">
-                            <option value="Fussball"> Fussball</option>
+                            <option value="Fussball">Fusball</option>
                             <option value="Basketball">Basketball</option>
                             <option value="Handball">Handball</option>
                             <option value="Volleyball">Volleyball</option>
                             <option value="Tennis">Tennis</option>
                             <option value="Rugby">Rugby</option>
-                            <option value="Table tennis">Table tennis</option>
+                            <option value="Tischtennis">Tischtennis</option>
                             <option value="Squash">Squash</option>
-                            <option value="Ice Hockey">Ice Hockey</option>
-                            <option value="Luge">Luge</option>
+                            <option value="Eis Hockey">Eis Hockey</option>
+                            <option value="Rennrodeln">Rennrodeln</option>
                             <option value="Skeleton">Skeleton</option>
                             <option value="Alpine Skiing">Alpine Skiing</option>
                             <option value="Freestyle Skiing">Freestyle Skiing</option>
-                            <option value="Speed Skating">Speed Skating</option>
+                            <option value="Speed Skating">Eisschnelllauf</option>
                             <option value="Baseball">Baseball</option>
                             <option value="Cricket">Cricket</option>
+                            <option value="eSport">eSport</option>
+                            <option value="Andere">Anderes</option>
                         </select>
                     </td>
                 </tr>
@@ -69,9 +71,9 @@
 					<td>
 						<select name="region">
 							<option value="Europa">Europa</option>
-							<option value="America">America</option>
-							<option value="Asien">Asien</option>
-							<option value="Afrika">Afrika</option>
+                            <option value="America">Amerika</option>
+                            <option value="Asien">Asien</option>
+                            <option value="Afrika">Afrika</option>
 						</select>
 					</td>
 				</tr>
@@ -80,17 +82,17 @@
                     <td><input type="text" name="keyword" /></td>
                 </tr>
 				<tr>
-                    <td>Date from</td>
+                    <td>Datum von</td>
                     <td><input type="text" name="datefrom" /></td>
                 </tr>
 				<tr>
-                    <td>Date to</td>
+                    <td>Datum bis</td>
                     <td><input type="text" name="dateto" /></td>
                 </tr>
 				
             </table>	
 				<input type=submit name=send value="Suchen">
-				<input type="reset" />
+				<input type="reset" value="Zurücksetzen"/>
             </form>
 			
             <br><br>
@@ -149,7 +151,7 @@
                 require_once('php/connect.php');
                 
                 $myquery = "
-                    SELECT  `lat`, `lng` FROM  `events`
+                    SELECT  `title`, `lat`, `lng` FROM  `events`
                     WHERE `lat` <> 0
                 ";
                 $query = mysql_query($myquery);
@@ -181,7 +183,7 @@
     
                 for ($x = 0; $x < mysql_num_rows($query); $x++) {
                     $data[] = mysql_fetch_assoc($query);
-                    echo "[",$data[$x]['lat'],",",$data[$x]['lng'],"]";
+                    echo "[\"",$data[$x]['title'],"\",",$data[$x]['lat'],",",$data[$x]['lng'],"]";
                     if ($x <= (mysql_num_rows($query)-2) ) {
                         echo ",";
                     }
@@ -190,43 +192,98 @@
                 echo "];";
             ?>
                 
+                
             for (var i = 0; i < planelatlong.length; i++) {
-			marker = new L.marker([planelatlong[i][0],planelatlong[i][1]])
-				.addTo(map);
+			marker = new L.marker([planelatlong[i][1],planelatlong[i][2]]);
+                  
+            marker.bindPopup(planelatlong[i][0]);
+				marker.addTo(map);  
             }
             </script>
             
 			<!-- List of all events -->
-            <table border="1">
+            
                 <?php 
                 
-                //require_once('php/connect.php');
+                require_once('php/connect.php');
                 
-                $Connect = mysqli_connect("localhost", "bsport", "PHArU6yU", "evts");
+                //$Connect = mysqli_connect("localhost", "bsport", "PHArU6yU", "evts");
 
                 $sql = "SELECT * FROM events";
  
-                $db_erg = mysqli_query( $Connect, $sql );
+                $db_erg = mysql_query($sql );
                 if ( ! $db_erg )
                 {
-                    die('Ungültige Abfrage: ' . mysqli_error($Connect));
+                    die('Ungültige Abfrage: ' . mysql_error($Connect));
                 }
-                    while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
+                while ($zeile = mysql_fetch_object($db_erg))
                     {
-                        echo "<h3>". $zeile['title'] . " findet am ". $zeile['jahr'] . ".". $zeile['monat'] . ".". $zeile['tag'] . ". um ". $zeile['stunde'] . ":". $zeile['minute'] . " statt.</h3>";
+                        ?>
+                        <br>
+                        <table class="table table-hover" style="width:100%">
+                            <tr>
+                                <th style="width:65%">
+                                    <?php
+                                        echo $zeile->title;
+                                    ?>
+                                </th>
+                                <th style="width:25%">
+                                    <?php
+                                        echo $zeile->jahr;
+                                        echo ".";
+                                        echo $zeile->monat;
+                                        echo ".";
+                                        echo $zeile->tag; 
+                                        echo ".";
+                                    ?>
+                                </th>
+                                <th style="width:10%">
+                                    <?php
+                                        echo $zeile->stunde;
+                                        echo ":";
+                                        echo $zeile->minute;
+                                    ?>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <?php
+                                        echo $zeile->description;
+                                    ?>
+                                    <br>
+                                    <?php
+                                        echo $zeile->website;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        echo $zeile->sportart;
+                                    ?>
+                                    <br>
+                                    <?php
+                                        echo $zeile->continent;
+                                    ?>
+                                    <br>
+                                    <?php
+                                        echo $zeile->reach;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        echo "Link für Marker oder so.";
+                                    ?>
+                                </td>
+                            </tr>
+                        </table>
+                        <?php
                     }
-					
+                    
 					//Showing an event on map
 					
-					
-					
 					//in development
-					
-					
-					
-                ?>
+				?>
             
-            </table>
+            
 			
 			
             <br><br><br><br>

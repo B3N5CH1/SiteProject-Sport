@@ -222,82 +222,97 @@
                 {
                     ?>
                     <br>
-                    <table class="table table-hover" style="width:100%; border-color:black;">
-                        <tr>
-                            <th style="width:65%">
-                                <?php
-                                    echo $zeile->title;
-                                ?>
-                            </th>
-                            <th style="width:25%">
-                                <?php
-                                    echo $zeile->jahr;
-                                    echo ".";
-                                    if ($zeile->monat < 10) {
-                                        echo "0";
-                                    } 
-                                    echo $zeile->monat;
-                                    echo ".";
-                                    if ($zeile->tag < 10) {
-                                        echo "0";
-                                    }
-                                    echo $zeile->tag; 
-                                    echo ".";
-                                ?>
-                            </th>
-                            <th style="width:10%">
-                                <?php
-                                    if ($zeile->stunde < 10) {
-                                        echo "0";
-                                    }
-                                    echo $zeile->stunde;
-                                    echo ":";
-                                    if ($zeile->minute <10) {
-                                        echo "0";
-                                    }
-                                    echo $zeile->minute;
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <?php
-                                    echo $zeile->description;
-                                ?>
-                                <br>
-                                <a href="<?php echo $zeile->website ?>" target="_blank"><?php echo $zeile->website ?></a>
-                                
-                                
-                                <?php
-                                    echo $zeile->website;
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                    echo $zeile->sportart;
-                                ?>
-                                <br>
-                                <?php
-                                    echo $zeile->continent;
-                                ?>
-                                <br>
-                                <?php
-                                    echo $zeile->reach;
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                    echo "Link für Marker oder so.";
-                                ?>
-                            </td>
-                        </tr>
-                    </table>
+                    <form method="POST">
+                        <table class="table table-hover" style="width:100%">
+                            <tr>
+                                <th style="width:65%">
+                                    <?php
+                                        echo $zeile->title;
+										//Setting an index when executing loop
+										$counter=$counter+1;
+                                    ?>
+                                </th>
+                                <th style="width:25%">
+                                    <?php
+                                        echo $zeile->jahr;
+                                        echo ".";
+                                        echo $zeile->monat;
+                                        echo ".";
+                                        echo $zeile->tag; 
+                                        echo ".";
+                                    ?>
+                                </th>
+                                <th style="width:10%">
+                                    <?php
+                                        echo $zeile->stunde;
+                                        echo ":";
+                                        echo $zeile->minute;
+                                    ?>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <?php
+                                        echo $zeile->description;
+                                    ?>
+                                    <br>
+                                    <?php
+                                        echo $zeile->website;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        echo $zeile->sportart;
+                                    ?>
+                                    <br>
+                                    <?php
+                                        echo $zeile->continent;
+                                    ?>
+                                    <br>
+                                    <?php
+                                        echo $zeile->reach;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+										//Getting access to the DB
+										require_once('php/connect.php');
+												
+                                        echo "<input type=submit name='show' value='Anzeigen'>";
+										$show = $_POST['show'];
+										//If a button is pressed, get lat and long from the database
+										if(isset($show)){
+											//Retrieving data for lat and long
+											$latt = "SELECT `lat` FROM `events` WHERE events.id='".$counter."'";
+											$long = "SELECT `lng` FROM `events` WHERE events.id='".$counter."'";
+											dbDo($latt);
+											print $latt;
+											dbDo($long);
+											print $long;
+											//As soon as we get coordinates of chosen event, we can set a new wiew on map
+											 ?>
+											<!-- Map 2.0 -->
+											<div id="map" style="height: 400px"></div>
+            
+											<script src="leaflet/leaflet.js"></script>
+			
+											<script>
+											var map = L.map('map').setView([46.801111, 8.226667], 7);
+                
+											L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+											attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+											maxZoom: 18
+											}).addTo(map);
+									<?php
+										}
+                                    ?>
+                                </td>
+                            </tr>
+                        </table>
+					</form>
                     <?php
-                }
-				//Showing an event on map
-				
-				//in development
-            ?>
+                    }
+				?>
             
             
 			

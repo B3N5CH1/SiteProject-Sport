@@ -281,7 +281,7 @@
                                         echo "<input type=submit name='show' value='Anzeigen'>";
 										$show = $_POST['show'];
 										//If a button is pressed, get lat and long from the database
-										if(isset($show)){
+										/*if(isset($show)){
 											//Retrieving data for lat and long
 											$latt = "SELECT `lat` FROM `events` WHERE events.id='".$counter."'";
 											$long = "SELECT `lng` FROM `events` WHERE events.id='".$counter."'";
@@ -304,7 +304,7 @@
 											maxZoom: 18
 											}).addTo(map);
 									<?php
-										}
+										}*/
                                     ?>
                                 </td>
                             </tr>

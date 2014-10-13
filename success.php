@@ -2,6 +2,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link type="text/css" rel="stylesheet" href="css/styles.css" >
         <link rel="stylesheet" href="leaflet/leaflet.css">
         <script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
         <title>

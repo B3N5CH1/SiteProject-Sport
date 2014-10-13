@@ -3,6 +3,7 @@
         <title>Broadsport - Sportveranstaltungen in der Nähe</title>
         <meta charset="utf-8">
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" >
+        <link type="text/css" rel="stylesheet" href="css/styles.css" >
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="leaflet/leaflet.css">
 	</head>
@@ -216,72 +217,87 @@
                 {
                     die('Ungültige Abfrage: ' . mysql_error($Connect));
                 }
+                
                 while ($zeile = mysql_fetch_object($db_erg))
-                    {
-                        ?>
-                        <br>
-                        <table class="table table-hover" style="width:100%">
-                            <tr>
-                                <th style="width:65%">
-                                    <?php
-                                        echo $zeile->title;
-                                    ?>
-                                </th>
-                                <th style="width:25%">
-                                    <?php
-                                        echo $zeile->jahr;
-                                        echo ".";
-                                        echo $zeile->monat;
-                                        echo ".";
-                                        echo $zeile->tag; 
-                                        echo ".";
-                                    ?>
-                                </th>
-                                <th style="width:10%">
-                                    <?php
-                                        echo $zeile->stunde;
-                                        echo ":";
-                                        echo $zeile->minute;
-                                    ?>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <?php
-                                        echo $zeile->description;
-                                    ?>
-                                    <br>
-                                    <?php
-                                        echo $zeile->website;
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                        echo $zeile->sportart;
-                                    ?>
-                                    <br>
-                                    <?php
-                                        echo $zeile->continent;
-                                    ?>
-                                    <br>
-                                    <?php
-                                        echo $zeile->reach;
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php
-                                        echo "Link für Marker oder so.";
-                                    ?>
-                                </td>
-                            </tr>
-                        </table>
-                        <?php
-                    }
-                    
-					//Showing an event on map
-					
-					//in development
-				?>
+                {
+                    ?>
+                    <br>
+                    <table class="table table-hover" style="width:100%; border-color:black;">
+                        <tr>
+                            <th style="width:65%">
+                                <?php
+                                    echo $zeile->title;
+                                ?>
+                            </th>
+                            <th style="width:25%">
+                                <?php
+                                    echo $zeile->jahr;
+                                    echo ".";
+                                    if ($zeile->monat < 10) {
+                                        echo "0";
+                                    } 
+                                    echo $zeile->monat;
+                                    echo ".";
+                                    if ($zeile->tag < 10) {
+                                        echo "0";
+                                    }
+                                    echo $zeile->tag; 
+                                    echo ".";
+                                ?>
+                            </th>
+                            <th style="width:10%">
+                                <?php
+                                    if ($zeile->stunde < 10) {
+                                        echo "0";
+                                    }
+                                    echo $zeile->stunde;
+                                    echo ":";
+                                    if ($zeile->minute <10) {
+                                        echo "0";
+                                    }
+                                    echo $zeile->minute;
+                                ?>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <?php
+                                    echo $zeile->description;
+                                ?>
+                                <br>
+                                <a href="<?php echo $zeile->website ?>" target="_blank"><?php echo $zeile->website ?></a>
+                                
+                                
+                                <?php
+                                    echo $zeile->website;
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                    echo $zeile->sportart;
+                                ?>
+                                <br>
+                                <?php
+                                    echo $zeile->continent;
+                                ?>
+                                <br>
+                                <?php
+                                    echo $zeile->reach;
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                    echo "Link für Marker oder so.";
+                                ?>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php
+                }
+				//Showing an event on map
+				
+				//in development
+            ?>
             
             
 			

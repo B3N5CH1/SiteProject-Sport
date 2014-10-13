@@ -2,6 +2,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link type="text/css" rel="stylesheet" href="css/styles.css" >
         <link rel="stylesheet" href="leaflet/leaflet.css">
         <script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
         <title>
@@ -50,6 +51,10 @@
                     if ($descript == '') {
                         $errors[] = 'Keine Beschreibung';
                     } 
+                    
+                    if (!($website == '')) {
+                        $website = 'http://' + $website;
+                    }
                     
                     if ($day == '' || (!($day>=1 && $day<=31))) {
                         $errors[] = 'Kein Tag bzw. 01-31';
@@ -103,7 +108,7 @@
                             '".$year."', '".$month."', '".$day."', '".$website."',
                             '".$hour."', '".$minutes."', '".$latitude."', '".$longitude."');";
                         dbDo($sql);
-                        //header("Location: /success.php");
+                        header("Location: /success.php");
                     } else {
                         echo '<br>Folgende Fehler traten auf:<br>' . implode('<br>', $errors);
                     }
@@ -169,7 +174,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Webseite des Veranstalters
+                            Webseite des Veranstalters (ohne "http://")
                         </td>
                         <td>
                             <input type="text" name="Webseite" value="<?php echo $website ?>"/>

@@ -1,0 +1,28 @@
+body { 
+    padding-top: 35px; 
+    background-color: lightgrey;
+}
+
+#Title {
+    width: 65%;
+    
+}
+
+#Date {
+    width: 25%;
+    float: right;
+}
+
+#Time {
+    width: 10%;
+    float: right;
+}
+
+th {
+    font-size: 25px;
+    font: bold;
+}
+
+td {
+    font-size: 20px;
+}

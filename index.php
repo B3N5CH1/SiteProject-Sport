@@ -39,12 +39,10 @@
 			
 			
 			<!-- Search table -->
-			<table border="1">
 			<form method="POST">
-            <table  style="background-color:silver;width:200px" class="table table-hover search" border="2" cellpadding="2">
-                <tr>
-                    <td>Sportart</td>
-                    <td>
+                <td>
+                    <tr>Sportart</tr>
+                    <tr>
                         <select name="sportart">
                             <option value="Fussball">Fusball</option>
                             <option value="Basketball">Basketball</option>
@@ -65,33 +63,32 @@
                             <option value="eSport">eSport</option>
                             <option value="Andere">Anderes</option>
                         </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Region</td>
-					<td>
+                    </tr>
+                </td>
+                <td>
+                    <tr>Region</tr>
+					<tr>
 						<select name="region">
 							<option value="Europa">Europa</option>
                             <option value="America">Amerika</option>
                             <option value="Asien">Asien</option>
                             <option value="Afrika">Afrika</option>
 						</select>
-					</td>
-				</tr>
-                <tr>
-                    <td>Stichwort</td>
-                    <td><input type="text" name="keyword" /></td>
-                </tr>
-				<tr>
-                    <td>Datum von</td>
-                    <td><input type="text" name="datefrom" /></td>
-                </tr>
-				<tr>
-                    <td>Datum bis</td>
-                    <td><input type="text" name="dateto" /></td>
-                </tr>
-				
-            </table>	
+					</tr>
+				</td>
+                <td>
+                    <tr>Stichwort</tr>
+                    <tr><input type="text" name="keyword" /></tr>
+                </td>
+				<td>
+                    <tr>Datum von</tr>
+                    <tr><input type="text" name="datefrom"/></tr>
+                </td>
+				<td>
+                    <tr>Datum bis</tr>
+                    <tr><input type="text" name="dateto" /></tr>
+                </td>
+					
 				<input type=submit name=send value="Suchen">
 				<input type="reset" value="Zurücksetzen"/>
             </form>

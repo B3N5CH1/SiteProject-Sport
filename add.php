@@ -52,10 +52,6 @@
                         $errors[] = 'Keine Beschreibung';
                     } 
                     
-                    if (!($website == '')) {
-                        $website = 'http://' + $website;
-                    }
-                    
                     if ($day == '' || (!($day>=1 && $day<=31))) {
                         $errors[] = 'Kein Tag bzw. 01-31';
                     }
@@ -174,7 +170,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Webseite des Veranstalters (ohne "http://")
+                            Webseite des Veranstalters (mit "http://")
                         </td>
                         <td>
                             <input type="text" name="Webseite" value="<?php echo $website ?>"/>
@@ -262,8 +258,8 @@
                 <!-- Map 2.0 -->
                 <div id="map" style="height: 300px;width: 66%;margin:0 auto;"></div>
                 <br>
-                <input type="text" name="lat" id="lat" hidden="true">
-                <input type="text" name="lng" id="lng" hidden="true">
+                <input type="text" name="lat" id="lat" hidden="true" value="<?php echo $latitude ?>">
+                <input type="text" name="lng" id="lng" hidden="true" value="<?php echo $longitude ?>">
                 <div style="float:right">
                     <input type=submit name=send value="Abschicken">
                     <input type="reset" value="Zurücksetzen"/>
@@ -282,7 +278,15 @@
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
             }).addTo(map);
-				
+            
+            <?php
+                if (!($latitude == 0)) {
+                    ?>
+                    var marker = L.marker([<?php echo $latitude ?>,<?php echo $longitude ?>]).addTo(map);
+                    <?php
+                }
+            ?>
+            
 			
 			var new_event_marker;
 

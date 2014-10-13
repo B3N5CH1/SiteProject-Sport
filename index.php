@@ -41,7 +41,7 @@
 			<!-- Search table -->
 			<table border="1">
 			<form method="POST">
-            <table  style="background-color:silver;width:200px" class="table table-hover" border="2" cellpadding="2">
+            <table  style="background-color:silver;width:200px" class="table table-hover search" border="2" cellpadding="2">
                 <tr>
                     <td>Sportart</td>
                     <td>

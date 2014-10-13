@@ -26,3 +26,12 @@ th {
 td {
     font-size: 20px;
 }
+
+.search > th {
+    font-size: 16 px;
+}
+
+.search > td {
+    font-size: 12ps;
+}
+

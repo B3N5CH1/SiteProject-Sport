@@ -40,54 +40,40 @@
 			
 			<!-- Search table -->
 			<form method="POST">
-                <td>
-                    <tr>Sportart</tr>
-                    <tr>
-                        <select name="sportart">
-                            <option value="Fussball">Fusball</option>
-                            <option value="Basketball">Basketball</option>
-                            <option value="Handball">Handball</option>
-                            <option value="Volleyball">Volleyball</option>
-                            <option value="Tennis">Tennis</option>
-                            <option value="Rugby">Rugby</option>
-                            <option value="Tischtennis">Tischtennis</option>
-                            <option value="Squash">Squash</option>
-                            <option value="Eis Hockey">Eis Hockey</option>
-                            <option value="Rennrodeln">Rennrodeln</option>
-                            <option value="Skeleton">Skeleton</option>
-                            <option value="Alpine Skiing">Alpine Skiing</option>
-                            <option value="Freestyle Skiing">Freestyle Skiing</option>
-                            <option value="Speed Skating">Eisschnelllauf</option>
-                            <option value="Baseball">Baseball</option>
-                            <option value="Cricket">Cricket</option>
-                            <option value="eSport">eSport</option>
-                            <option value="Andere">Anderes</option>
-                        </select>
-                    </tr>
-                </td>
-                <td>
-                    <tr>Region</tr>
-					<tr>
-						<select name="region">
-							<option value="Europa">Europa</option>
-                            <option value="America">Amerika</option>
-                            <option value="Asien">Asien</option>
-                            <option value="Afrika">Afrika</option>
-						</select>
-					</tr>
-				</td>
-                <td>
-                    <tr>Stichwort</tr>
-                    <tr><input type="text" name="keyword" /></tr>
-                </td>
-				<td>
-                    <tr>Datum von</tr>
-                    <tr><input type="text" name="datefrom"/></tr>
-                </td>
-				<td>
-                    <tr>Datum bis</tr>
-                    <tr><input type="text" name="dateto" /></tr>
-                </td>
+                Sportart
+                    <select name="sportart">
+                        <option value="Fussball">Fusball</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Handball">Handball</option>
+                        <option value="Volleyball">Volleyball</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Rugby">Rugby</option>
+                        <option value="Tischtennis">Tischtennis</option>
+                        <option value="Squash">Squash</option>
+                        <option value="Eis Hockey">Eis Hockey</option>
+                        <option value="Rennrodeln">Rennrodeln</option>
+                        <option value="Skeleton">Skeleton</option>
+                        <option value="Alpine Skiing">Alpine Skiing</option>
+                        <option value="Freestyle Skiing">Freestyle Skiing</option>
+                        <option value="Speed Skating">Eisschnelllauf</option>
+                        <option value="Baseball">Baseball</option>
+                        <option value="Cricket">Cricket</option>
+                        <option value="eSport">eSport</option>
+                        <option value="Andere">Anderes</option>
+                    </select>
+                Region
+				    <select name="region">
+				        <option value="Europa">Europa</option>
+                        <option value="America">Amerika</option>
+                        <option value="Asien">Asien</option>
+                        <option value="Afrika">Afrika</option>
+				    </select>
+				Stichwort
+                    <input type="text" name="keyword" />
+                Datum von
+                    <input type="text" name="datefrom"/>
+                Datum bis
+                    <input type="text" name="dateto" />
 					
 				<input type=submit name=send value="Suchen">
 				<input type="reset" value="Zurücksetzen"/>

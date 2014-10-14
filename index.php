@@ -42,6 +42,7 @@
 			<form method="POST">
                 Sportart
 					<select name="sportart">
+                        <option value="*">Alle</option>
                         <option value="Fussball">Fusball</option>
                         <option value="Basketball">Basketball</option>
                         <option value="Handball">Handball</option>

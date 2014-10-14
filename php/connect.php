@@ -8,7 +8,7 @@ $DBName = "evts";
 
 $Connect = mysql_connect($Host, $User, $Passwd, $DBName);
 
-//Makes a query to a DB
+//Makes a query to the DB
 function dbDo($command, $message="") {
 	$result=@mysql_query($command);
 	if($message) echo '<br>'.$message;
@@ -32,7 +32,7 @@ function dbList($param="") {
 	}
 	if($result) {
 		$nrows=mysql_num_rows($result);
-		echo "<br>Contains of a table:<br>";
+		echo "<br>Gefunden:<br>";
 		for ($i = 0; $i < $nrows; $i++) {
 			$line = mysql_fetch_row($result);
 			for($j = 0; $j < sizeof($line); $j++) 
@@ -57,7 +57,7 @@ function dbListSearchResults($param="") {
 	}
 	if($result) {
 		$nrows=mysql_num_rows($result);
-		echo "<br>Contains of a table:<br>";
+		echo "<br>Gefunden:<br>";
 		for ($i = 0; $i < $nrows; $i++) {
 			$line = mysql_fetch_row($result);
 			for($j = 0; $j < sizeof($line); $j++) 

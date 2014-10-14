@@ -41,7 +41,7 @@
 			<!-- Search table -->
 			<form method="POST">
                 Sportart
-                    <select name="sportart">
+					<select name="sportart">
                         <option value="Fussball">Fusball</option>
                         <option value="Basketball">Basketball</option>
                         <option value="Handball">Handball</option>
@@ -62,7 +62,7 @@
                         <option value="Andere">Anderes</option>
                     </select>
                 Region
-				    <select name="region">
+					<select name="region">
 				        <option value="Europa">Europa</option>
                         <option value="America">Amerika</option>
                         <option value="Asien">Asien</option>
@@ -70,14 +70,12 @@
 				    </select>
 				Stichwort
                     <input type="text" name="keyword" />
-                Datum von
-                    <input type="text" name="datefrom"/>
-                Datum bis
-                    <input type="text" name="dateto" />
-				<div style="margin:5px 0px 0px auto">
-				    <input type=submit name=send value="Suchen">
-				    <input type="reset" value="Zurücksetzen"/>
-                </div>
+                
+               <!-- Datum von
+                <input type="text" name="datefrom"/>
+                Datum bis<input type="text" name="dateto" /> -->
+				<input type=submit name=send value="Suchen">
+				<input type="reset" value="Zurücksetzen"/>
             </form>
 			
             <br><br>
@@ -119,13 +117,12 @@
 					//Still in development
 					
 					
-					
 					/*
 					//Search on Date
 					if(isset($datefrom) && isset($dateto)){
 						$sql = $sql." AND date BETWEEN '".$fromYear."-".$fromMonth."-".$fromDay."' AND '".$toYear."-".$toMonthT."-".$toDay."';";
 					} */
-					dbList($sql);
+					dbListSearchResults($sql);
 				}
             ?>
 			
@@ -179,9 +176,9 @@
                 
                 
             for (var i = 0; i < planelatlong.length; i++) {
-			marker = new L.marker([planelatlong[i][1],planelatlong[i][2]]);
+				marker = new L.marker([planelatlong[i][1],planelatlong[i][2]]);
                   
-            marker.bindPopup(planelatlong[i][0]);
+				marker.bindPopup(planelatlong[i][0]);
 				marker.addTo(map);  
             }
             </script>
@@ -272,10 +269,10 @@
                                 <td>
                                     <?php
 										//Getting access to the DB
-										require_once('php/connect.php');
+										//require_once('php/connect.php');
 												
-                                        echo "<input type=submit name='show' value='Anzeigen'>";
-										$show = $_POST['show'];
+                                        //echo "<input type=submit name='show' value='Anzeigen'>";
+										//$show = $_POST['show'];
 										//If a button is pressed, get lat and long from the database
 										/*if(isset($show)){
 											//Retrieving data for lat and long
@@ -299,8 +296,8 @@
 											attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 											maxZoom: 18
 											}).addTo(map);
-									<?php
-										}*/
+											<?php
+											}*/
                                     ?>
                                 </td>
                             </tr>
@@ -310,8 +307,6 @@
                     }
 				?>
             
-            
-			
 			
             <br><br><br><br>
         </div>

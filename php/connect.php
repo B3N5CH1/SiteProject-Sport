@@ -67,7 +67,7 @@ function dbListSearchResults($param="") {
 		}
 		echo "<br>";
 	}
-	return result;*/
+	return result;
 }
 
 dbDo("SET character_set_client='cp1251'");

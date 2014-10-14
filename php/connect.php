@@ -20,7 +20,7 @@ function dbDo($command, $message="") {
 	return $result;
 }
 
-//Lists database contains
+//Lists all database contains
 function dbList($param="") {
 	if($param) {
 		$nrows=@mysql_num_rows($param);
@@ -45,8 +45,33 @@ function dbList($param="") {
 	return result;
 }
 
+//Lists specific broadsport search results
+function dbListSearchResults($param="") {
+	if($param) {
+		$nrows=@mysql_num_rows($param);
+		if($nrows) $result = $param;
+		else {
+			$sql="SELECT `title`, `description`, `sportart`, `continent`, `reach`, `jahr`, `monat`, `tag`, `stunde`, `minute`, `website` FROM ".$param;
+			$result = dbDo($sql);
+		}
+	}
+	if($result) {
+		$nrows=mysql_num_rows($result);
+		echo "<br>Contains of a table:<br>";
+		for ($i = 0; $i < $nrows; $i++) {
+			$line = mysql_fetch_row($result);
+			for($j = 0; $j < sizeof($line); $j++) 
+				echo $line[$j].' ';
+			echo '<br>';
+			//print_r($line);
+		}
+		echo "<br>";
+	}
+	return result;*/
+}
+
 dbDo("SET character_set_client='cp1251'");
 dbDo("SET character_set_results='cp1251'");
 dbDo("SET collation_connection='cp1251_general_ci'");
-dbDo('use '.$DBName);//, "database opening");
+dbDo('use '.$DBName);//"database opening");
 ?>

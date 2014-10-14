@@ -95,10 +95,16 @@
 				$toMonth = $_POST['toMonth'];
 				$toDay = $_POST['toDay'];
                 $region = $_POST['region'];
-                $sportart = $_POST['sportart'];
+                $sportart = $_POST['sportart']; 
 			
 			    //If somebody has pressed a "send" button
 				if(isset($sent)){
+				
+						if($sportart=='*'){
+							$sql = "`".$table."` WHERE continent = '".$region."'";
+							dbListSearchResults($sql);
+						} else {
+						
 					//Search on Sportart
 					$sql = "`".$table."` WHERE ";
 					if(isset($sportart)){
@@ -114,7 +120,9 @@
 					if(isset($keyword) && $keyword != ''){
 						$sql = $sql." AND title LIKE '%".$keyword."%';";
 					}
-				
+						dbListSearchResults($sql);
+					}
+					
 					//Still in development
 					
 					
@@ -123,7 +131,6 @@
 					if(isset($datefrom) && isset($dateto)){
 						$sql = $sql." AND date BETWEEN '".$fromYear."-".$fromMonth."-".$fromDay."' AND '".$toYear."-".$toMonthT."-".$toDay."';";
 					} */
-					dbListSearchResults($sql);
 				}
             ?>
 			

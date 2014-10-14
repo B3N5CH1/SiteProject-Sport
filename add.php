@@ -21,7 +21,8 @@
             <?php	
 
                 require_once('php/connect.php');
-
+                
+                //Variablen setzen entsprechend der Felder des Formulars.
                 $table = "events";
                 $sent = $_POST['send'];
                 $title = htmlentities($_POST['Titel']);
@@ -41,6 +42,7 @@
                 $leapYear = array(2016, 2020, 2024, 2028, 2032, 2036, 2040);
                 $longestMonth = array(01, 03, 05, 07, 08, 10, 12);
                 
+                // Wenn der 'Senden' Button angeklickt wurde:
                 if (isset($sent)) {
                     
                     //variablen auf Inhalt prüfen und ggf. den Fehler (hier einfach der Feldname) in das Array $errors packen.
@@ -92,6 +94,7 @@
                         $errors[] = 'Kein Ort ausgewählt';
                     }
                     
+                    // Wenn keine Fehler, Inhalt der Variablen an DB übermittlen und auf Success Seite weiterleiten, andernfalls die entsprechenden Fehler von oben ausdrucken.
                     if (count($errors)==0) {
                         $sql = "INSERT INTO `".$table."` 
                             (`title`, `description` ,
@@ -112,7 +115,7 @@
 
             ?>
             
-            
+            // Navigations Leiste
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="container-fluid">
@@ -130,18 +133,10 @@
                                 <li><a href="add.php">Veranstaltung eintragen</a></li>
                                 <li><a href="about.html">About</a></li>
                             </ul>
-                            <!-- <form class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default">Submit</button>
-                            </form> -->
                         </div>
                     </div>
                 </div>
             </nav>
-            
-            
             
             <br>
             <h2>
@@ -150,6 +145,8 @@
             <p>
                 Hier kannst Du eine neue Veranstaltung eintragen.
             </p>
+            <!-- Formular um neue Veranstaltung einzutragen. PHP Code in input druckt den entsprechenden Wert der Variable ein,
+            Sofern ein solcher bereits übertragen wurde (z.B. wenn ein Fehler aufgetreten ist.) -->
             <form method="POST" action="add.php">
                 <table  style="background-color:silver" class="table table-hover" border="2" cellpadding="2">
 				    <tr>
@@ -235,6 +232,8 @@
                             Datum (JJJJ-MM-TT)*
                         </td>
                         <td>
+                            <!-- Zeit und Datum wurden von Hand mit verschiedenen Input Felder gemacht,
+                            Da Zeitformat des input type time nicht mit dem der DB übereingestummen hat. -->
                             <input type="text" name="Jahr" maxlength="4" size="3" value="<?php echo $year ?>"/>
                             &nbsp;
                             <input type="text" name="Monat" maxlength="2" size="1" value="<?php echo $month ?>"/>
@@ -255,7 +254,9 @@
                 </table>	         
                 <h4 style="text-align:center">Klicke auf die Karte, um den Ort der Veranstaltung anzugeben.*</h4>
             
-                <!-- Map 2.0 -->
+                <!-- Map 2.0 | Das Div, wohin die Karte geladen wird, anschliessend zwei versteckte inputs
+                um den Wert der Länge und Breite zu speichern und an DB zu übertragen, anschliessend Sende-
+                bzw. Zurücksetzbutton. -->
                 <div id="map" style="height: 300px;width: 66%;margin:0 auto;"></div>
                 <br>
                 <input type="text" name="lat" id="lat" hidden="true" value="<?php echo $latitude ?>">
@@ -269,7 +270,7 @@
             
             <br><br><br><br>
         </div>
-        
+        <!-- Generiert die Karte -->
         <script src="leaflet/leaflet.js"></script>
         <script>
             var map = L.map('map').setView([46.801111, 8.226667], 7);
@@ -278,7 +279,8 @@
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 18
             }).addTo(map);
-            
+            // Falls bereits ein Ort angegeben wurde, und ein Fehler auftritt, wird der alte Ort
+            // mit einem Marker auf der Karte eingetragen.
             <?php
                 if (!($latitude == 0)) {
                     ?>
@@ -287,10 +289,16 @@
                 }
             ?>
             
-			
+			// Bei einem Klick auf die Karte wird (falls vorhanden) der alte Marker gelöscht,
+            // und ein neuer gesetzt, die Werte Lat/Lng werden in das HTML Formular übertragen.
 			var new_event_marker;
 
 			map.on('click', function(e) {
+                <?php
+                    if (!($latitude == 0)) {
+                        echo 'map.removeLayer(marker);';
+                    }
+                ?>
                 if(typeof(new_event_marker)==='undefined') {
                     new_event_marker = new L.marker(e.latlng,{ draggable: true}).bindPopup('Event Position');
                     new_event_marker.addTo(map);        

@@ -74,9 +74,10 @@
                     <input type="text" name="datefrom"/>
                 Datum bis
                     <input type="text" name="dateto" />
-					
-				<input type=submit name=send value="Suchen">
-				<input type="reset" value="Zurücksetzen"/>
+				<div style="margin:5px 0px 0px auto">
+				    <input type=submit name=send value="Suchen">
+				    <input type="reset" value="Zurücksetzen"/>
+                </div>
             </form>
 			
             <br><br>
@@ -219,16 +220,28 @@
                                     <?php
                                         echo $zeile->jahr;
                                         echo ".";
+                                        if ($zeile->monat < 10) {
+                                            echo "0";
+                                        }
                                         echo $zeile->monat;
                                         echo ".";
+                                        if ($zeile->tag < 10) {
+                                            echo "0";
+                                        }
                                         echo $zeile->tag; 
                                         echo ".";
                                     ?>
                                 </th>
                                 <th style="width:10%">
                                     <?php
+                                        if ($zeile->stunde < 10) {
+                                            echo "0";
+                                        }
                                         echo $zeile->stunde;
                                         echo ":";
+                                        if ($zeile->minute < 10) {
+                                            echo "0";
+                                        }
                                         echo $zeile->minute;
                                     ?>
                                 </th>
